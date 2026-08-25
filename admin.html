@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOTTO CITY - Admin Control Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+  <style> body { font-family: 'Plus Jakarta Sans', 'Padauk', sans-serif; } </style>
+</head>
+<body class="bg-[#070b14] text-slate-100 min-h-screen flex items-center justify-center p-4">
+
+  <!-- Login Card -->
+  <div id="login-box" class="w-full max-w-sm bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-2xl">
+    <div class="text-center mb-6">
+      <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-black text-xl flex items-center justify-center mx-auto mb-2">⚡</div>
+      <h1 class="text-xl font-extrabold text-slate-100">LOTTO <span class="text-cyan-400">ADMIN</span></h1>
+      <p class="text-xs text-slate-400 mt-1">Control Center & Live Update</p>
+    </div>
+    <input type="password" id="admin-pass" placeholder="Password ရိုက်ထည့်ပါ" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3.5 text-sm mb-3 focus:outline-none focus:border-cyan-400">
+    <button onclick="checkLogin()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3.5 rounded-xl transition">Login ဝင်ရန်</button>
+    <p id="error-msg" class="text-rose-400 text-xs text-center mt-2 hidden">Password မှားယွင်းနေပါသည်</p>
+  </div>
+
+  <!-- Dashboard Card -->
+  <div id="dashboard-box" class="w-full max-w-md bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-2xl hidden space-y-5">
+    <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+      <div>
+        <h2 class="text-base font-bold text-slate-100">Manual Control Panel</h2>
+        <p class="text-[11px] text-slate-400">မွေးဂဏန်းနှင့် Mod/Net ဂဏန်းများ ထိန်းချုပ်ရန်</p>
+      </div>
+      <span class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-semibold">ONLINE</span>
+    </div>
+
+    <!-- 1. VIP မွေးဂဏန်း ထိန်းချုပ်မှု -->
+    <div class="p-4 bg-slate-950/60 rounded-2xl border border-slate-800/80 space-y-3">
+      <div class="flex items-center gap-1.5 text-amber-400 text-xs font-bold">
+        <span>✦</span>
+        <span>တစ်ပတ်စာ မွေးဂဏန်း သတ်မှတ်ရန်</span>
+      </div>
+      <div class="grid grid-cols-3 gap-2">
+        <div>
+          <label class="text-[10px] text-slate-400 block mb-1">မွေးပတ်သီး</label>
+          <input type="text" id="tip-pat" placeholder="ဥပမာ-8" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-center focus:border-cyan-400">
+        </div>
+        <div>
+          <label class="text-[10px] text-slate-400 block mb-1">အဓိကမွေး</label>
+          <input type="text" id="tip-main" placeholder="ဥပမာ-83" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-center focus:border-cyan-400">
+        </div>
+        <div>
+          <label class="text-[10px] text-slate-400 block mb-1">မွေးတွဲများ</label>
+          <input type="text" id="tip-sub" placeholder="85, 87" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-center focus:border-cyan-400">
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Modern & Internet (09:30 AM) -->
+    <div class="p-4 bg-slate-950/60 rounded-2xl border border-slate-800/80 space-y-3">
+      <div class="flex items-center justify-between text-xs font-bold text-slate-200">
+        <span class="text-amber-400">09:30 AM (မနက်ပိုင်း)</span>
+        <span class="text-[10px] text-slate-400">Mod / Net</span>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="text-[10px] text-slate-400 block mb-1">Modern (9:30)</label>
+          <input type="text" id="m-930" placeholder="ဥပမာ-42" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-center focus:border-cyan-400">
+        </div>
+        <div>
+          <label class="text-[10px] text-slate-400 block mb-1">Internet (9:30)</label>
+          <input type="text" id="i-930" placeholder="ဥပမာ-69" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-center focus:border-cyan-400">
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Modern & Internet (02:00 PM) -->
+    <div class="p-4 bg-slate-950/60 rounded-2xl border border-slate-800/80 space-y-3">
+      <div class="flex items-center justify-between text-xs font-bold text-slate-200">
+        <span class="text-amber-400">02:00 PM (ညနေပိုင်း)</span>
+        <span class="text-[10px] text-slate-400">Mod / Net</span>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="text-[10px] text-slate-400 block mb-1">Modern (2:00)</label>
+          <input type="text" id="m-200" placeholder="ဥပမာ-15" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-center focus:border-cyan-400">
+        </div>
+        <div>
+          <label class="text-[10px] text-slate-400 block mb-1">Internet (2:00)</label>
+          <input type="text" id="i-200" placeholder="ဥပမာ-78" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-center focus:border-cyan-400">
+        </div>
+      </div>
+    </div>
+
+    <button onclick="saveAllData()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3.5 rounded-xl transition">Website သို့ ဒေတာများ တင်ရန်</button>
+    <p id="success-msg" class="text-emerald-400 text-xs text-center hidden">Website သို့ အောင်မြင်စွာ တင်ပြီးပါပြီ ✓</p>
+  </div>
+
+  <script>
+    const SECRET_KEY = "123456"; // Password (၁၂၃၄၅၆)
+
+    function checkLogin() {
+      const pass = document.getElementById("admin-pass").value;
+      if (pass === SECRET_KEY) {
+        document.getElementById("login-box").classList.add("hidden");
+        document.getElementById("dashboard-box").classList.remove("hidden");
+        loadData();
+      } else {
+        document.getElementById("error-msg").classList.remove("hidden");
+      }
+    }
+
+    async function loadData() {
+      try {
+        const res = await fetch("https://lotto-city-tips-default-rtdb.firebaseio.com/appData.json");
+        const data = await res.json();
+        if (data) {
+          document.getElementById("tip-pat").value = data.pat || "";
+          document.getElementById("tip-main").value = data.main || "";
+          document.getElementById("tip-sub").value = data.sub || "";
+          document.getElementById("m-930").value = data.m930 || "";
+          document.getElementById("i-930").value = data.i930 || "";
+          document.getElementById("m-200").value = data.m200 || "";
+          document.getElementById("i-200").value = data.i200 || "";
+        }
+      } catch (e) {}
+    }
+
+    async function saveAllData() {
+      const payload = {
+        pat: document.getElementById("tip-pat").value || "--",
+        main: document.getElementById("tip-main").value || "--",
+        sub: document.getElementById("tip-sub").value || "--",
+        m930: document.getElementById("m-930").value || "--",
+        i930: document.getElementById("i-930").value || "--",
+        m200: document.getElementById("m-200").value || "--",
+        i200: document.getElementById("i-200").value || "--"
+      };
+
+      try {
+        await fetch("https://lotto-city-tips-default-rtdb.firebaseio.com/appData.json", {
+          method: "PUT",
+          body: JSON.stringify(payload)
+        });
+        document.getElementById("success-msg").classList.remove("hidden");
+        setTimeout(() => document.getElementById("success-msg").classList.add("hidden"), 3000);
+      } catch (err) {
+        alert("သိမ်းဆည်းရာတွင် အမှားဖြစ်ပေါ်ပါသည်");
+      }
+    }
+  </script>
+</body>
+</html>
