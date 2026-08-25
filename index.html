@@ -61,6 +61,36 @@
       </div>
     </div>
 
+    <!-- VIP မွေးဂဏန်း ခန့်မှန်းချက် Section -->
+    <div class="glass-card rounded-3xl p-5 shadow-xl border border-cyan-500/20">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-amber-400 text-sm">✦</span>
+          <h2 class="text-sm font-bold text-slate-200 tracking-wide">တစ်ပတ်စာ အထူးမွေးဂဏန်း</h2>
+        </div>
+        <span class="text-[10px] bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2 py-0.5 rounded-full font-semibold">VIP TIPS</span>
+      </div>
+
+      <div class="grid grid-cols-3 gap-2 text-center py-2">
+        <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
+          <div class="text-[10px] text-slate-400 mb-1">မွေးပတ်သီး</div>
+          <!-- မွေးပတ်သီး ပြင်ရန် -->
+          <div class="text-xl font-extrabold text-cyan-400">8</div>
+        </div>
+        <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
+          <div class="text-[10px] text-slate-400 mb-1">အဓိကမွေးဂဏန်း</div>
+          <!-- အဓိကမွေးဂဏန်း ပြင်ရန် -->
+          <div class="text-xl font-extrabold text-amber-400">83</div>
+        </div>
+        <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
+          <div class="text-[10px] text-slate-400 mb-1">မွေးတွဲများ</div>
+          <!-- မွေးတွဲများ ပြင်ရန် -->
+          <div class="text-sm font-bold text-slate-200 mt-1">85, 87, 89</div>
+        </div>
+      </div>
+      <p class="text-[10px] text-slate-500 text-center mt-2">တနင်္လာ မှ သောကြာ အထိ ထွက်သည်အထိ လိုက်ရန် မွေးဂဏန်းများ</p>
+    </div>
+
     <!-- Modern & Internet 2D Section (9:30 & 2:00) -->
     <div class="glass-card rounded-3xl p-5 shadow-xl">
       <div class="flex items-center justify-between mb-3">
@@ -183,14 +213,14 @@
           ui.value.innerText = data.live.value || "--";
           ui.time.innerText = timeStr;
 
-          // Modern & Internet 9:30 / 2:00 Data Sync
+          // Modern & Internet Sync
           if (data.live.modern_930 || data.live.modern_morning) ui.m930.innerText = data.live.modern_930 || data.live.modern_morning;
           if (data.live.internet_930 || data.live.internet_morning) ui.i930.innerText = data.live.internet_930 || data.live.internet_morning;
           if (data.live.modern_200 || data.live.modern_evening) ui.m200.innerText = data.live.modern_200 || data.live.modern_evening;
           if (data.live.internet_200 || data.live.internet_evening) ui.i200.innerText = data.live.internet_200 || data.live.internet_evening;
         }
 
-        // Official Sessions History (11:00, 12:01, 15:00, 16:30)
+        // Official Sessions History
         if (data.result && data.result.length > 0) {
           ui.history.innerHTML = "";
           data.result.forEach(item => {
