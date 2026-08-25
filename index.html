@@ -10,15 +10,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Plus Jakarta Sans', 'Padauk', sans-serif; }
-    .glow-gold { text-shadow: 0 0 25px rgba(251, 191, 36, 0.4); }
+    .glow-cyan { text-shadow: 0 0 25px rgba(56, 189, 248, 0.5); }
     .glass-card { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
     @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.9); } }
     .animate-pulse-fast { animation: pulse-dot 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
   </style>
 </head>
-<body class="bg-[#070b14] text-slate-100 min-h-screen flex flex-col items-center justify-between p-4 selection:bg-amber-400 selection:text-black">
+<body class="bg-[#070b14] text-slate-100 min-h-screen flex flex-col items-center justify-between p-4 selection:bg-cyan-400 selection:text-black">
 
-  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-64 bg-amber-500/10 blur-[120px] pointer-events-none -z-10"></div>
+  <!-- Background Ambient Glow -->
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-64 bg-cyan-500/10 blur-[120px] pointer-events-none -z-10"></div>
 
   <div class="w-full max-w-md flex flex-col gap-4">
     
@@ -26,8 +27,8 @@
     <header class="flex items-center justify-between py-3 px-1">
       <div>
         <div class="flex items-center gap-2">
-          <div class="w-3 h-3 rounded-full bg-amber-400"></div>
-          <h1 class="text-xl font-extrabold tracking-wider text-slate-100">LOTTO <span class="text-amber-400">CITY</span></h1>
+          <div class="w-3 h-3 rounded-full bg-cyan-400"></div>
+          <h1 class="text-xl font-extrabold tracking-wider text-slate-100">LOTTO <span class="text-cyan-400">CITY</span></h1>
         </div>
         <p class="text-[11px] text-slate-400 tracking-wide mt-0.5">Stock Exchange & Live Analytics</p>
       </div>
@@ -37,20 +38,6 @@
       </div>
     </header>
 
-    <!-- Top Banner Ad Slot (320x50) -->
-    <div class="w-full min-h-[50px] flex items-center justify-center rounded-xl overflow-hidden bg-slate-900/40 border border-slate-800/40">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : 'f7453303d8df5c26cb3b9f91a9df2e21',
-          'format' : 'iframe',
-          'height' : 50,
-          'width' : 320,
-          'params' : {}
-        };
-      </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/f7453303d8df5c26cb3b9f91a9df2e21/invoke.js"></script>
-    </div>
-
     <!-- Main Live Result Card -->
     <div class="glass-card rounded-3xl p-6 shadow-2xl relative overflow-hidden">
       <div class="flex justify-between items-center text-xs text-slate-400 font-medium">
@@ -58,10 +45,12 @@
         <span id="live-time" class="bg-slate-800/80 px-2.5 py-1 rounded-md text-slate-300">Syncing...</span>
       </div>
 
+      <!-- Big Number -->
       <div class="py-6 text-center">
-        <div id="live-twod" class="text-8xl font-black text-amber-400 glow-gold tracking-tight inline-block transition-all duration-300">--</div>
+        <div id="live-twod" class="text-8xl font-black text-cyan-400 glow-cyan tracking-tight inline-block transition-all duration-300">--</div>
       </div>
 
+      <!-- Market Stats Grid -->
       <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800/60">
         <div class="bg-slate-900/60 border border-slate-800/50 p-3.5 rounded-2xl">
           <span class="text-[11px] font-bold text-slate-400 tracking-wider block mb-1">SET INDEX</span>
@@ -72,20 +61,6 @@
           <span id="live-value" class="text-lg font-bold text-slate-100 tracking-tight transition-all duration-300">--</span>
         </div>
       </div>
-    </div>
-
-    <!-- Middle Banner Ad Slot (300x250) -->
-    <div class="w-full min-h-[250px] flex items-center justify-center rounded-2xl overflow-hidden bg-slate-900/40 border border-slate-800/40">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : '883f3fbe3fce58428801ceb83e4ba436',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
-        };
-      </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/883f3fbe3fce58428801ceb83e4ba436/invoke.js"></script>
     </div>
 
     <!-- History / Sessions Section -->
@@ -100,8 +75,8 @@
       </div>
     </div>
 
-    <!-- Telegram Link -->
-    <a href="https://t.me/NAIoGift" target="_blank" class="w-full glass-card hover:bg-slate-800/60 transition duration-200 border-slate-800 rounded-2xl p-4 flex items-center justify-between group">
+    <!-- Official Telegram Channel Button -->
+    <a href="https://t.me/lottocity_mm" target="_blank" rel="noopener noreferrer" class="w-full glass-card hover:bg-slate-800/60 transition duration-200 border-slate-800 rounded-2xl p-4 flex items-center justify-between group">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 font-bold text-lg">
           ✈
@@ -111,7 +86,7 @@
           <div class="text-xs text-slate-400">နေ့စဉ် သတင်းနှင့် အချက်အလက်များရယူရန်</div>
         </div>
       </div>
-      <span class="text-slate-400 group-hover:text-amber-400 text-sm font-semibold transition">Join →</span>
+      <span class="text-slate-400 group-hover:text-cyan-400 text-sm font-semibold transition">Join →</span>
     </a>
 
   </div>
@@ -120,7 +95,7 @@
     © 2026 LOTTO CITY. Powered by Live 2D Data.
   </footer>
 
-  <!-- Script Section -->
+  <!-- Live Data Script -->
   <script>
     async function fetchStockData() {
       try {
@@ -161,7 +136,7 @@
             row.className = "flex justify-between items-center bg-slate-900/80 border border-slate-800/40 px-4 py-3 rounded-xl";
             row.innerHTML = `
               <span class="text-xs text-slate-400 font-medium">${item.open_time}</span>
-              <span class="font-bold text-amber-400 text-lg">${item.twod}</span>
+              <span class="font-bold text-cyan-400 text-lg">${item.twod}</span>
             `;
             ui.history.appendChild(row);
           });
@@ -174,5 +149,9 @@
     fetchStockData();
     setInterval(fetchStockData, 3000); 
   </script>
+
+  <!-- Adsterra Monetization Script -->
+  <script type="text/javascript" src="https://pl31021178.profitableratecpmnetwork.com/3b/71/e7/3b71e7fd9de2da000a9244f2754787b7.js"></script>
 </body>
 </html>
+
