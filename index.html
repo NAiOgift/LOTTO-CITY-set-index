@@ -3,88 +3,176 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LOTTO CITY - Live Stock Data</title>
+  <title>LOTTO CITY - Real-time Stock Exchange & Live Data</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', 'Padauk', sans-serif; }
+    .glow-gold { text-shadow: 0 0 25px rgba(251, 191, 36, 0.4); }
+    .glass-card { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.9); } }
+    .animate-pulse-fast { animation: pulse-dot 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center p-4">
+<body class="bg-[#070b14] text-slate-100 min-h-screen flex flex-col items-center justify-between p-4 selection:bg-amber-400 selection:text-black">
 
-  <!-- Header -->
-  <header class="w-full max-w-md py-4 text-center border-b border-slate-800">
-    <h1 class="text-2xl font-black tracking-wider text-amber-400">LOTTO CITY</h1>
-    <p class="text-xs text-slate-400">Real-time Stock Exchange & Live Data</p>
-  </header>
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-64 bg-amber-500/10 blur-[120px] pointer-events-none -z-10"></div>
 
-  <!-- Ad Slot: Top -->
-  <div class="w-full max-w-md my-4 h-16 bg-slate-900 border border-dashed border-slate-700 flex items-center justify-center text-xs text-slate-500 rounded">
-    ကြော်ငြာနေရာ (Banner Ad 320x50)
-  </div>
-
-  <!-- Live Card -->
-  <div class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl text-center">
-    <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
-      <span class="flex items-center gap-1">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> LIVE RESULT
-      </span>
-      <span id="live-time">Updating...</span>
-    </div>
-
-    <div id="live-twod" class="text-7xl font-black text-amber-400 my-4 tracking-tight">--</div>
-
-    <div class="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-slate-800/80 text-sm">
-      <div class="bg-slate-950/50 p-2 rounded-lg">
-        <span class="text-slate-500 text-xs block">SET</span>
-        <span id="live-set" class="font-semibold text-slate-200">--</span>
+  <div class="w-full max-w-md flex flex-col gap-4">
+    
+    <!-- Top Header -->
+    <header class="flex items-center justify-between py-3 px-1">
+      <div>
+        <div class="flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+          <h1 class="text-xl font-extrabold tracking-wider text-slate-100">LOTTO <span class="text-amber-400">CITY</span></h1>
+        </div>
+        <p class="text-[11px] text-slate-400 tracking-wide mt-0.5">Stock Exchange & Live Analytics</p>
       </div>
-      <div class="bg-slate-950/50 p-2 rounded-lg">
-        <span class="text-slate-500 text-xs block">VALUE</span>
-        <span id="live-value" class="font-semibold text-slate-200">--</span>
+      <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-fast"></span>
+        <span class="text-[10px]">REAL-TIME (3S)</span>
+      </div>
+    </header>
+
+    <!-- Top Banner Ad Slot (320x50) -->
+    <div class="w-full min-h-[50px] flex items-center justify-center rounded-xl overflow-hidden bg-slate-900/40 border border-slate-800/40">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : 'f7453303d8df5c26cb3b9f91a9df2e21',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/f7453303d8df5c26cb3b9f91a9df2e21/invoke.js"></script>
+    </div>
+
+    <!-- Main Live Result Card -->
+    <div class="glass-card rounded-3xl p-6 shadow-2xl relative overflow-hidden">
+      <div class="flex justify-between items-center text-xs text-slate-400 font-medium">
+        <span>CURRENT RESULT</span>
+        <span id="live-time" class="bg-slate-800/80 px-2.5 py-1 rounded-md text-slate-300">Syncing...</span>
+      </div>
+
+      <div class="py-6 text-center">
+        <div id="live-twod" class="text-8xl font-black text-amber-400 glow-gold tracking-tight inline-block transition-all duration-300">--</div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800/60">
+        <div class="bg-slate-900/60 border border-slate-800/50 p-3.5 rounded-2xl">
+          <span class="text-[11px] font-bold text-slate-400 tracking-wider block mb-1">SET INDEX</span>
+          <span id="live-set" class="text-lg font-bold text-slate-100 tracking-tight transition-all duration-300">--</span>
+        </div>
+        <div class="bg-slate-900/60 border border-slate-800/50 p-3.5 rounded-2xl">
+          <span class="text-[11px] font-bold text-slate-400 tracking-wider block mb-1">VALUE</span>
+          <span id="live-value" class="text-lg font-bold text-slate-100 tracking-tight transition-all duration-300">--</span>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Ad Slot: Middle -->
-  <div class="w-full max-w-md my-4 h-24 bg-slate-900 border border-dashed border-slate-700 flex items-center justify-center text-xs text-slate-500 rounded">
-    ကြော်ငြာနေရာ (Banner Ad 300x250)
-  </div>
-
-  <!-- History Section -->
-  <div class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-xl p-4">
-    <h2 class="text-sm font-semibold text-slate-300 mb-3">ယနေ့ထွက်ဂဏန်းများ</h2>
-    <div id="history-list" class="space-y-2">
-      <p class="text-xs text-slate-500 text-center py-2">ဒေတာရယူနေသည်...</p>
+    <!-- Middle Banner Ad Slot (300x250) -->
+    <div class="w-full min-h-[250px] flex items-center justify-center rounded-2xl overflow-hidden bg-slate-900/40 border border-slate-800/40">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : '883f3fbe3fce58428801ceb83e4ba436',
+          'format' : 'iframe',
+          'height' : 250,
+          'width' : 300,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/883f3fbe3fce58428801ceb83e4ba436/invoke.js"></script>
     </div>
+
+    <!-- History / Sessions Section -->
+    <div class="glass-card rounded-3xl p-5 shadow-xl">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-bold text-slate-200 tracking-wide">ယနေ့ထွက်ဂဏန်းမှတ်တမ်း</h2>
+        <span class="text-[11px] text-slate-400">SET Data</span>
+      </div>
+
+      <div id="history-list" class="space-y-2.5">
+        <div class="text-center py-4 text-xs text-slate-500">ဒေတာများ ရယူနေသည်...</div>
+      </div>
+    </div>
+
+    <!-- Telegram Link -->
+    <a href="https://t.me/NAIoGift" target="_blank" class="w-full glass-card hover:bg-slate-800/60 transition duration-200 border-slate-800 rounded-2xl p-4 flex items-center justify-between group">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 font-bold text-lg">
+          ✈
+        </div>
+        <div class="text-left">
+          <div class="text-sm font-bold text-slate-200">Official Telegram Channel</div>
+          <div class="text-xs text-slate-400">နေ့စဉ် သတင်းနှင့် အချက်အလက်များရယူရန်</div>
+        </div>
+      </div>
+      <span class="text-slate-400 group-hover:text-amber-400 text-sm font-semibold transition">Join →</span>
+    </a>
+
   </div>
 
+  <footer class="w-full max-w-md text-center py-6 text-xs text-slate-500">
+    © 2026 LOTTO CITY. Powered by Live 2D Data.
+  </footer>
+
+  <!-- Script Section -->
   <script>
     async function fetchStockData() {
       try {
         const res = await fetch("https://api.thaistock2d.com/live");
+        if (!res.ok) throw new Error('API Sync Error');
         const data = await res.json();
 
+        const ui = {
+          twod: document.getElementById("live-twod"),
+          set: document.getElementById("live-set"),
+          value: document.getElementById("live-value"),
+          time: document.getElementById("live-time"),
+          history: document.getElementById("history-list")
+        };
+
+        const fadeOut = (el) => el.style.opacity = '0.7';
+        const fadeIn = (el) => el.style.opacity = '1';
+
         if (data.live) {
-          document.getElementById("live-twod").innerText = data.live.twod || "--";
-          document.getElementById("live-set").innerText = data.live.set || "--";
-          document.getElementById("live-value").innerText = data.live.value || "--";
-          document.getElementById("live-time").innerText = data.live.time || "Live";
+          [ui.twod, ui.set, ui.value, ui.time].forEach(fadeOut);
+          
+          setTimeout(() => {
+            ui.twod.innerText = data.live.twod || "--";
+            ui.set.innerText = data.live.set || "--";
+            ui.value.innerText = data.live.value || "--";
+            
+            const timeStr = data.live.time || "";
+            ui.time.innerText = timeStr.substring(timeStr.length - 8);
+
+            [ui.twod, ui.set, ui.value, ui.time].forEach(fadeIn);
+          }, 150);
         }
 
         if (data.result && data.result.length > 0) {
-          const list = document.getElementById("history-list");
-          list.innerHTML = "";
+          ui.history.innerHTML = "";
           data.result.forEach(item => {
             const row = document.createElement("div");
-            row.className = "flex justify-between items-center bg-slate-950 p-3 rounded-lg text-sm";
-            row.innerHTML = `<span class="text-slate-400">${item.open_time}</span><span class="font-bold text-amber-400 text-base">${item.twod}</span>`;
-            list.appendChild(row);
+            row.className = "flex justify-between items-center bg-slate-900/80 border border-slate-800/40 px-4 py-3 rounded-xl";
+            row.innerHTML = `
+              <span class="text-xs text-slate-400 font-medium">${item.open_time}</span>
+              <span class="font-bold text-amber-400 text-lg">${item.twod}</span>
+            `;
+            ui.history.appendChild(row);
           });
         }
       } catch (err) {
-        console.error("Fetch error:", err);
+        console.error("API Fetch error:", err);
       }
     }
 
     fetchStockData();
-    setInterval(fetchStockData, 10000); // 10s တစ်ခါ auto update
+    setInterval(fetchStockData, 3000); 
   </script>
 </body>
 </html>
