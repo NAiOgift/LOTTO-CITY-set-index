@@ -32,7 +32,7 @@
       <span class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-semibold">ONLINE</span>
     </div>
 
-    <!-- 1. VIP မွေးဂဏန်း ထိန်းချုပ်မှု -->
+    <!-- 1. VIP မွေးဂဏန်း -->
     <div class="p-4 bg-slate-950/60 rounded-2xl border border-slate-800/80 space-y-3">
       <div class="flex items-center gap-1.5 text-amber-400 text-xs font-bold">
         <span>✦</span>
@@ -90,12 +90,14 @@
       </div>
     </div>
 
-    <button onclick="saveAllData()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3.5 rounded-xl transition">Website သို့ ဒေတာများ တင်ရန်</button>
+    <button id="save-btn" onclick="saveAllData()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3.5 rounded-xl transition">Website သို့ ဒေတာများ တင်ရန်</button>
     <p id="success-msg" class="text-emerald-400 text-xs text-center hidden">Website သို့ အောင်မြင်စွာ တင်ပြီးပါပြီ ✓</p>
   </div>
 
   <script>
-    const SECRET_KEY = "123456"; // Password (၁၂၃၄၅၆)
+    const SECRET_KEY = "123456";
+    const API_URL = "https://api.jsonbin.io/v3/b/66cb3f9fad19ca34f89b9d36";
+    const MASTER_KEY = "$2a$10$f6B0Z8z14m1rQc9E.Wv1ee8rN03sWJ2ZcQGg7lS6sK4U7FmC.zL0i";
 
     function checkLogin() {
       const pass = document.getElementById("admin-pass").value;
@@ -110,8 +112,11 @@
 
     async function loadData() {
       try {
-        const res = await fetch("https://lotto-city-tips-default-rtdb.firebaseio.com/appData.json");
-        const data = await res.json();
+        const res = await fetch(API_URL + "/latest", {
+          headers: { "X-Master-Key": MASTER_KEY }
+        });
+        const json = await res.json();
+        const data = json.record;
         if (data) {
           document.getElementById("tip-pat").value = data.pat || "";
           document.getElementById("tip-main").value = data.main || "";
@@ -125,6 +130,10 @@
     }
 
     async function saveAllData() {
+      const btn = document.getElementById("save-btn");
+      btn.innerText = "တင်နေပါသည်...";
+      btn.disabled = true;
+
       const payload = {
         pat: document.getElementById("tip-pat").value || "--",
         main: document.getElementById("tip-main").value || "--",
@@ -136,14 +145,21 @@
       };
 
       try {
-        await fetch("https://lotto-city-tips-default-rtdb.firebaseio.com/appData.json", {
+        await fetch(API_URL, {
           method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Master-Key": MASTER_KEY
+          },
           body: JSON.stringify(payload)
         });
         document.getElementById("success-msg").classList.remove("hidden");
         setTimeout(() => document.getElementById("success-msg").classList.add("hidden"), 3000);
       } catch (err) {
         alert("သိမ်းဆည်းရာတွင် အမှားဖြစ်ပေါ်ပါသည်");
+      } finally {
+        btn.innerText = "Website သို့ ဒေတာများ တင်ရန်";
+        btn.disabled = false;
       }
     }
   </script>
