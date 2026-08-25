@@ -18,12 +18,10 @@
 </head>
 <body class="bg-[#070b14] text-slate-100 min-h-screen flex flex-col items-center justify-between p-4 selection:bg-cyan-400 selection:text-black">
 
-  <!-- Ambient Glow -->
   <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-64 bg-cyan-500/10 blur-[120px] pointer-events-none -z-10"></div>
 
   <div class="w-full max-w-md flex flex-col gap-4">
     
-    <!-- Header -->
     <header class="flex items-center justify-between py-3 px-1">
       <div>
         <div class="flex items-center gap-2">
@@ -61,7 +59,7 @@
       </div>
     </div>
 
-    <!-- VIP မွေးဂဏန်း Section (အောက်ပါဂဏန်းများကို တိုက်ရိုက်ပြင်နိုင်သည်) -->
+    <!-- VIP မွေးဂဏန်း Section -->
     <div class="glass-card rounded-3xl p-5 shadow-xl border border-cyan-500/20">
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
@@ -74,18 +72,15 @@
       <div class="grid grid-cols-3 gap-2 text-center py-2">
         <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
           <div class="text-[10px] text-slate-400 mb-1">မွေးပတ်သီး</div>
-          <!-- မွေးပတ်သီး ပြင်ရန် -->
-          <div class="text-xl font-extrabold text-cyan-400">8</div>
+          <div id="cfg-pat" class="text-xl font-extrabold text-cyan-400">--</div>
         </div>
         <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
           <div class="text-[10px] text-slate-400 mb-1">အဓိကမွေးဂဏန်း</div>
-          <!-- အဓိကမွေးဂဏန်း ပြင်ရန် -->
-          <div class="text-xl font-extrabold text-amber-400">83</div>
+          <div id="cfg-main" class="text-xl font-extrabold text-amber-400">--</div>
         </div>
         <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
           <div class="text-[10px] text-slate-400 mb-1">မွေးတွဲများ</div>
-          <!-- မွေးတွဲများ ပြင်ရန် -->
-          <div class="text-sm font-bold text-slate-200 mt-1">85, 87, 89</div>
+          <div id="cfg-sub" class="text-sm font-bold text-slate-200 mt-1">--</div>
         </div>
       </div>
       <p class="text-[10px] text-slate-500 text-center mt-2">တနင်္လာ မှ သောကြာ အထိ ထွက်သည်အထိ လိုက်ရန် မွေးဂဏန်းများ</p>
@@ -102,7 +97,6 @@
       </div>
 
       <div class="grid grid-cols-2 gap-3">
-        <!-- 9:30 AM Section -->
         <div class="bg-slate-900/80 border border-slate-800/60 p-3.5 rounded-2xl">
           <div class="flex justify-between items-center mb-2 pb-1 border-b border-slate-800/50">
             <span class="text-xs font-bold text-amber-400">09:30 AM</span>
@@ -110,17 +104,14 @@
           </div>
           <div class="flex justify-between items-center py-1">
             <span class="text-xs text-slate-400">Modern:</span>
-            <!-- 9:30 Modern ပြင်ရန် -->
-            <span id="modern-930" class="text-base font-bold text-cyan-400">42</span>
+            <span id="cfg-m930" class="text-base font-bold text-cyan-400">--</span>
           </div>
           <div class="flex justify-between items-center py-1">
             <span class="text-xs text-slate-400">Internet:</span>
-            <!-- 9:30 Internet ပြင်ရန် -->
-            <span id="internet-930" class="text-base font-bold text-cyan-400">69</span>
+            <span id="cfg-i930" class="text-base font-bold text-cyan-400">--</span>
           </div>
         </div>
 
-        <!-- 2:00 PM Section -->
         <div class="bg-slate-900/80 border border-slate-800/60 p-3.5 rounded-2xl">
           <div class="flex justify-between items-center mb-2 pb-1 border-b border-slate-800/50">
             <span class="text-xs font-bold text-amber-400">02:00 PM</span>
@@ -128,13 +119,11 @@
           </div>
           <div class="flex justify-between items-center py-1">
             <span class="text-xs text-slate-400">Modern:</span>
-            <!-- 2:00 Modern ပြင်ရန် -->
-            <span id="modern-200" class="text-base font-bold text-cyan-400">15</span>
+            <span id="cfg-m200" class="text-base font-bold text-cyan-400">--</span>
           </div>
           <div class="flex justify-between items-center py-1">
             <span class="text-xs text-slate-400">Internet:</span>
-            <!-- 2:00 Internet ပြင်ရန် -->
-            <span id="internet-200" class="text-base font-bold text-cyan-400">78</span>
+            <span id="cfg-i200" class="text-base font-bold text-cyan-400">--</span>
           </div>
         </div>
       </div>
@@ -146,7 +135,6 @@
         <h2 class="text-sm font-bold text-slate-200 tracking-wide">ယနေ့ တရားဝင်ထွက်ဂဏန်းမှတ်တမ်း</h2>
         <span class="text-[11px] text-slate-400">SET Sessions</span>
       </div>
-
       <div id="history-list" class="space-y-2.5">
         <div class="text-center py-4 text-xs text-slate-500">ဒေတာများ ရယူနေသည်...</div>
       </div>
@@ -155,9 +143,7 @@
     <!-- Official Telegram Channel Button -->
     <a href="https://t.me/lottocity_mm" target="_blank" rel="noopener noreferrer" class="w-full glass-card hover:bg-slate-800/60 transition duration-200 border-slate-800 rounded-2xl p-4 flex items-center justify-between group">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 font-bold text-lg">
-          ✈
-        </div>
+        <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 font-bold text-lg">✈</div>
         <div class="text-left">
           <div class="text-sm font-bold text-slate-200">Official Telegram Channel</div>
           <div class="text-xs text-slate-400">နေ့စဉ် သတင်းနှင့် အချက်အလက်များရယူရန်</div>
@@ -172,8 +158,24 @@
     © 2026 LOTTO CITY. Powered by Live 2D Data.
   </footer>
 
-  <!-- Scripts -->
+  <!-- 1. Config Loader -->
+  <script src="config.js"></script>
+
+  <!-- 2. Application Scripts -->
   <script>
+    // Config ဒေတာများကို UI ပေါ်သို့ ထည့်သွင်းခြင်း
+    function applyConfig() {
+      if (typeof lottoConfig !== 'undefined') {
+        document.getElementById("cfg-pat").innerText = lottoConfig.pat || "--";
+        document.getElementById("cfg-main").innerText = lottoConfig.main || "--";
+        document.getElementById("cfg-sub").innerText = lottoConfig.sub || "--";
+        document.getElementById("cfg-m930").innerText = lottoConfig.m930 || "--";
+        document.getElementById("cfg-i930").innerText = lottoConfig.i930 || "--";
+        document.getElementById("cfg-m200").innerText = lottoConfig.m200 || "--";
+        document.getElementById("cfg-i200").innerText = lottoConfig.i200 || "--";
+      }
+    }
+
     async function fetchStockData() {
       try {
         const res = await fetch("https://api.thaistock2d.com/live");
@@ -214,7 +216,6 @@
           ui.time.innerText = timeStr;
         }
 
-        // Official Sessions History
         if (data.result && data.result.length > 0) {
           ui.history.innerHTML = "";
           data.result.forEach(item => {
@@ -235,6 +236,7 @@
       }
     }
 
+    applyConfig();
     fetchStockData();
     setInterval(fetchStockData, 3000); 
   </script>
