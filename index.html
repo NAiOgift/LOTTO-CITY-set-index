@@ -32,9 +32,9 @@
         </div>
         <p class="text-[11px] text-slate-400 tracking-wide mt-0.5">Stock Exchange & Live Analytics</p>
       </div>
-      <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-fast"></span>
-        <span class="text-[10px]">REAL-TIME (3S)</span>
+      <div id="status-badge" class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
+        <span id="status-dot" class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-fast"></span>
+        <span id="status-text" class="text-[10px]">REAL-TIME (3S)</span>
       </div>
     </header>
 
@@ -45,10 +45,12 @@
         <span id="live-time" class="bg-slate-800/80 px-2.5 py-1 rounded-md text-slate-300">Syncing...</span>
       </div>
 
+      <!-- Big Number -->
       <div class="py-6 text-center">
         <div id="live-twod" class="text-8xl font-black text-cyan-400 glow-cyan tracking-tight inline-block transition-all duration-300">--</div>
       </div>
 
+      <!-- Market Stats Grid -->
       <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800/60">
         <div class="bg-slate-900/60 border border-slate-800/50 p-3.5 rounded-2xl">
           <span class="text-[11px] font-bold text-slate-400 tracking-wider block mb-1">SET INDEX</span>
@@ -71,22 +73,18 @@
         <span class="text-[10px] bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2 py-0.5 rounded-full font-semibold">VIP TIPS</span>
       </div>
 
-      <!-- Tips Content Box -->
       <div class="grid grid-cols-3 gap-2 text-center py-2">
         <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
           <div class="text-[10px] text-slate-400 mb-1">ပတ်သီး</div>
-          <!-- ဒီနေရာမှာ မိမိပေးချင်တဲ့ ပတ်သီးဂဏန်း ပြင်ပါ -->
-          <div class="text-xl font-extrabold text-cyan-400">9</div>
+          <div class="text-xl font-extrabold text-cyan-400">8</div>
         </div>
         <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
           <div class="text-[10px] text-slate-400 mb-1">အဓိကအကြိုက်</div>
-          <!-- ဒီနေရာမှာ မိမိပေးချင်တဲ့ အဓိကဂဏန်း ပြင်ပါ -->
-          <div class="text-xl font-extrabold text-amber-400">97</div>
+          <div class="text-xl font-extrabold text-amber-400">83</div>
         </div>
         <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
           <div class="text-[10px] text-slate-400 mb-1">ရံဂဏန်း</div>
-          <!-- ဒီနေရာမှာ မိမိပေးချင်တဲ့ ရံဂဏန်းများ ပြင်ပါ -->
-          <div class="text-sm font-bold text-slate-200 mt-1">86, 51, 65</div>
+          <div class="text-sm font-bold text-slate-200 mt-1">85, 87, 89</div>
         </div>
       </div>
       <p class="text-[10px] text-slate-500 text-center mt-2">နေ့စဉ် မနက်/ညနေ ပိုမိုတိကျသော Formula များအား Telegram တွင် ရယူနိုင်ပါသည်</p>
@@ -124,8 +122,10 @@
     © 2026 LOTTO CITY. Powered by Live 2D Data.
   </footer>
 
-  <!-- Live Data Script -->
+  <!-- Live Data & Auto-Stop Script -->
   <script>
+    let isMarketClosed = false;
+
     async function fetchStockData() {
       try {
         const res = await fetch("https://api.thaistock2d.com/live");
@@ -137,27 +137,41 @@
           set: document.getElementById("live-set"),
           value: document.getElementById("live-value"),
           time: document.getElementById("live-time"),
-          history: document.getElementById("history-list")
+          history: document.getElementById("history-list"),
+          badge: document.getElementById("status-badge"),
+          dot: document.getElementById("status-dot"),
+          text: document.getElementById("status-text")
         };
 
-        const fadeOut = (el) => el.style.opacity = '0.7';
-        const fadeIn = (el) => el.style.opacity = '1';
-
+        // Live Result UI Update
         if (data.live) {
-          [ui.twod, ui.set, ui.value, ui.time].forEach(fadeOut);
-          
-          setTimeout(() => {
-            ui.twod.innerText = data.live.twod || "--";
-            ui.set.innerText = data.live.set || "--";
-            ui.value.innerText = data.live.value || "--";
-            
-            const timeStr = data.live.time || "";
-            ui.time.innerText = timeStr.substring(timeStr.length - 8);
+          const rawTime = data.live.time || "";
+          const timeStr = rawTime.substring(rawTime.length - 8);
 
-            [ui.twod, ui.set, ui.value, ui.time].forEach(fadeIn);
-          }, 150);
+          // မနက်ပိုင်း 12:01 နှင့် ညနေပိုင်း 16:30 အပြီးတွင် စနစ်အား ရပ်တန့်စေသည့် Logic
+          const timeOnly = timeStr.trim();
+          const isMorningClosed = timeOnly >= "12:01:00" && timeOnly < "14:00:00";
+          const isEveningClosed = timeOnly >= "16:30:00" || timeOnly < "09:30:00";
+
+          if (isMorningClosed || isEveningClosed) {
+            isMarketClosed = true;
+            ui.badge.className = "flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold";
+            ui.dot.className = "w-1.5 h-1.5 rounded-full bg-amber-400";
+            ui.text.innerText = isMorningClosed ? "MORNING CLOSED" : "MARKET CLOSED";
+          } else {
+            isMarketClosed = false;
+            ui.badge.className = "flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold";
+            ui.dot.className = "w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-fast";
+            ui.text.innerText = "REAL-TIME (3S)";
+          }
+
+          ui.twod.innerText = data.live.twod || "--";
+          ui.set.innerText = data.live.set || "--";
+          ui.value.innerText = data.live.value || "--";
+          ui.time.innerText = timeStr;
         }
 
+        // History Data List
         if (data.result && data.result.length > 0) {
           ui.history.innerHTML = "";
           data.result.forEach(item => {
