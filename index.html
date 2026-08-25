@@ -61,7 +61,7 @@
       </div>
     </div>
 
-    <!-- VIP မွေးဂဏန်း ခန့်မှန်းချက် Section -->
+    <!-- VIP မွေးဂဏန်း Section (Admin Connected) -->
     <div class="glass-card rounded-3xl p-5 shadow-xl border border-cyan-500/20">
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
@@ -74,24 +74,21 @@
       <div class="grid grid-cols-3 gap-2 text-center py-2">
         <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
           <div class="text-[10px] text-slate-400 mb-1">မွေးပတ်သီး</div>
-          <!-- မွေးပတ်သီး ပြင်ရန် -->
-          <div class="text-xl font-extrabold text-cyan-400">8</div>
+          <div id="display-pat" class="text-xl font-extrabold text-cyan-400">--</div>
         </div>
         <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
           <div class="text-[10px] text-slate-400 mb-1">အဓိကမွေးဂဏန်း</div>
-          <!-- အဓိကမွေးဂဏန်း ပြင်ရန် -->
-          <div class="text-xl font-extrabold text-amber-400">83</div>
+          <div id="display-main" class="text-xl font-extrabold text-amber-400">--</div>
         </div>
         <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
           <div class="text-[10px] text-slate-400 mb-1">မွေးတွဲများ</div>
-          <!-- မွေးတွဲများ ပြင်ရန် -->
-          <div class="text-sm font-bold text-slate-200 mt-1">85, 87, 89</div>
+          <div id="display-sub" class="text-sm font-bold text-slate-200 mt-1">--</div>
         </div>
       </div>
       <p class="text-[10px] text-slate-500 text-center mt-2">တနင်္လာ မှ သောကြာ အထိ ထွက်သည်အထိ လိုက်ရန် မွေးဂဏန်းများ</p>
     </div>
 
-    <!-- Modern & Internet 2D Section (9:30 & 2:00) -->
+    <!-- Modern & Internet 2D Section (Admin Connected) -->
     <div class="glass-card rounded-3xl p-5 shadow-xl">
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
@@ -136,13 +133,12 @@
       </div>
     </div>
 
-    <!-- Official SET History Section (11:00, 12:01, 3:00, 4:30) -->
+    <!-- Official SET History Section -->
     <div class="glass-card rounded-3xl p-5 shadow-xl">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-sm font-bold text-slate-200 tracking-wide">ယနေ့ တရားဝင်ထွက်ဂဏန်းမှတ်တမ်း</h2>
         <span class="text-[11px] text-slate-400">SET Sessions</span>
       </div>
-
       <div id="history-list" class="space-y-2.5">
         <div class="text-center py-4 text-xs text-slate-500">ဒေတာများ ရယူနေသည်...</div>
       </div>
@@ -184,11 +180,7 @@
           history: document.getElementById("history-list"),
           badge: document.getElementById("status-badge"),
           dot: document.getElementById("status-dot"),
-          text: document.getElementById("status-text"),
-          m930: document.getElementById("modern-930"),
-          i930: document.getElementById("internet-930"),
-          m200: document.getElementById("modern-200"),
-          i200: document.getElementById("internet-200")
+          text: document.getElementById("status-text")
         };
 
         if (data.live) {
@@ -212,15 +204,8 @@
           ui.set.innerText = data.live.set || "--";
           ui.value.innerText = data.live.value || "--";
           ui.time.innerText = timeStr;
-
-          // Modern & Internet Sync
-          if (data.live.modern_930 || data.live.modern_morning) ui.m930.innerText = data.live.modern_930 || data.live.modern_morning;
-          if (data.live.internet_930 || data.live.internet_morning) ui.i930.innerText = data.live.internet_930 || data.live.internet_morning;
-          if (data.live.modern_200 || data.live.modern_evening) ui.m200.innerText = data.live.modern_200 || data.live.modern_evening;
-          if (data.live.internet_200 || data.live.internet_evening) ui.i200.innerText = data.live.internet_200 || data.live.internet_evening;
         }
 
-        // Official Sessions History
         if (data.result && data.result.length > 0) {
           ui.history.innerHTML = "";
           data.result.forEach(item => {
@@ -241,11 +226,33 @@
       }
     }
 
+    // Remote Admin Control Data Fetcher
+    async function loadRemoteData() {
+      try {
+        const res = await fetch("https://lotto-city-tips-default-rtdb.firebaseio.com/appData.json");
+        const data = await res.json();
+        if (data) {
+          document.getElementById("display-pat").innerText = data.pat || "--";
+          document.getElementById("display-main").innerText = data.main || "--";
+          document.getElementById("display-sub").innerText = data.sub || "--";
+          document.getElementById("modern-930").innerText = data.m930 || "--";
+          document.getElementById("internet-930").innerText = data.i930 || "--";
+          document.getElementById("modern-200").innerText = data.m200 || "--";
+          document.getElementById("internet-200").innerText = data.i200 || "--";
+        }
+      } catch (e) {
+        console.error("Remote data fetch error:", e);
+      }
+    }
+
     fetchStockData();
+    loadRemoteData();
     setInterval(fetchStockData, 3000); 
+    setInterval(loadRemoteData, 5000); // 5 စက္ကန့်တစ်ခါ Admin ဒေတာ အလိုအလျောက် စစ်ဆေးခြင်း
   </script>
 
   <!-- Adsterra Monetization Script -->
   <script type="text/javascript" src="https://pl31021178.profitableratecpmnetwork.com/3b/71/e7/3b71e7fd9de2da000a9244f2754787b7.js"></script>
 </body>
 </html>
+
