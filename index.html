@@ -18,12 +18,12 @@
 </head>
 <body class="bg-[#070b14] text-slate-100 min-h-screen flex flex-col items-center justify-between p-4 selection:bg-cyan-400 selection:text-black">
 
-  <!-- Background Ambient Glow -->
+  <!-- Ambient Glow -->
   <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-64 bg-cyan-500/10 blur-[120px] pointer-events-none -z-10"></div>
 
   <div class="w-full max-w-md flex flex-col gap-4">
     
-    <!-- Top Header -->
+    <!-- Header -->
     <header class="flex items-center justify-between py-3 px-1">
       <div>
         <div class="flex items-center gap-2">
@@ -45,12 +45,10 @@
         <span id="live-time" class="bg-slate-800/80 px-2.5 py-1 rounded-md text-slate-300">Syncing...</span>
       </div>
 
-      <!-- Big Number -->
       <div class="py-6 text-center">
         <div id="live-twod" class="text-8xl font-black text-cyan-400 glow-cyan tracking-tight inline-block transition-all duration-300">--</div>
       </div>
 
-      <!-- Market Stats Grid -->
       <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800/60">
         <div class="bg-slate-900/60 border border-slate-800/50 p-3.5 rounded-2xl">
           <span class="text-[11px] font-bold text-slate-400 tracking-wider block mb-1">SET INDEX</span>
@@ -63,38 +61,56 @@
       </div>
     </div>
 
-    <!-- Daily VIP Tips / ခန့်မှန်းဂဏန်း ကဏ္ဍ -->
-    <div class="glass-card rounded-3xl p-5 shadow-xl border border-cyan-500/20">
+    <!-- Modern & Internet 2D Section (9:30 & 2:00) -->
+    <div class="glass-card rounded-3xl p-5 shadow-xl">
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
-          <span class="text-amber-400 text-sm">✦</span>
-          <h2 class="text-sm font-bold text-slate-200 tracking-wide">ယနေ့အတွက် အထူးခန့်မှန်းဂဏန်း</h2>
+          <span class="text-cyan-400 font-bold">⚡</span>
+          <h2 class="text-sm font-bold text-slate-200 tracking-wide">Modern & Internet ထွက်ဂဏန်းများ</h2>
         </div>
-        <span class="text-[10px] bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2 py-0.5 rounded-full font-semibold">VIP TIPS</span>
+        <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded-full">9:30 / 2:00</span>
       </div>
 
-      <div class="grid grid-cols-3 gap-2 text-center py-2">
-        <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
-          <div class="text-[10px] text-slate-400 mb-1">ပတ်သီး</div>
-          <div class="text-xl font-extrabold text-cyan-400">8</div>
+      <div class="grid grid-cols-2 gap-3">
+        <!-- 9:30 AM Section -->
+        <div class="bg-slate-900/80 border border-slate-800/60 p-3.5 rounded-2xl">
+          <div class="flex justify-between items-center mb-2 pb-1 border-b border-slate-800/50">
+            <span class="text-xs font-bold text-amber-400">09:30 AM</span>
+            <span class="text-[10px] text-slate-500">မနက်ပိုင်း</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-xs text-slate-400">Modern:</span>
+            <span id="modern-930" class="text-base font-bold text-cyan-400">--</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-xs text-slate-400">Internet:</span>
+            <span id="internet-930" class="text-base font-bold text-cyan-400">--</span>
+          </div>
         </div>
-        <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
-          <div class="text-[10px] text-slate-400 mb-1">အဓိကအကြိုက်</div>
-          <div class="text-xl font-extrabold text-amber-400">83</div>
-        </div>
-        <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
-          <div class="text-[10px] text-slate-400 mb-1">ရံဂဏန်း</div>
-          <div class="text-sm font-bold text-slate-200 mt-1">85, 87, 89</div>
+
+        <!-- 2:00 PM Section -->
+        <div class="bg-slate-900/80 border border-slate-800/60 p-3.5 rounded-2xl">
+          <div class="flex justify-between items-center mb-2 pb-1 border-b border-slate-800/50">
+            <span class="text-xs font-bold text-amber-400">02:00 PM</span>
+            <span class="text-[10px] text-slate-500">ညနေပိုင်း</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-xs text-slate-400">Modern:</span>
+            <span id="modern-200" class="text-base font-bold text-cyan-400">--</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-xs text-slate-400">Internet:</span>
+            <span id="internet-200" class="text-base font-bold text-cyan-400">--</span>
+          </div>
         </div>
       </div>
-      <p class="text-[10px] text-slate-500 text-center mt-2">နေ့စဉ် မနက်/ညနေ ပိုမိုတိကျသော Formula များအား Telegram တွင် ရယူနိုင်ပါသည်</p>
     </div>
 
-    <!-- History / Sessions Section -->
+    <!-- Official SET History Section (11:00, 12:01, 3:00, 4:30) -->
     <div class="glass-card rounded-3xl p-5 shadow-xl">
       <div class="flex items-center justify-between mb-4">
-        <h2 class="text-sm font-bold text-slate-200 tracking-wide">ယနေ့ထွက်ဂဏန်းမှတ်တမ်း</h2>
-        <span class="text-[11px] text-slate-400">SET Data</span>
+        <h2 class="text-sm font-bold text-slate-200 tracking-wide">ယနေ့ တရားဝင်ထွက်ဂဏန်းမှတ်တမ်း</h2>
+        <span class="text-[11px] text-slate-400">SET Sessions</span>
       </div>
 
       <div id="history-list" class="space-y-2.5">
@@ -122,10 +138,8 @@
     © 2026 LOTTO CITY. Powered by Live 2D Data.
   </footer>
 
-  <!-- Live Data & Auto-Stop Script -->
+  <!-- Scripts -->
   <script>
-    let isMarketClosed = false;
-
     async function fetchStockData() {
       try {
         const res = await fetch("https://api.thaistock2d.com/live");
@@ -140,26 +154,25 @@
           history: document.getElementById("history-list"),
           badge: document.getElementById("status-badge"),
           dot: document.getElementById("status-dot"),
-          text: document.getElementById("status-text")
+          text: document.getElementById("status-text"),
+          m930: document.getElementById("modern-930"),
+          i930: document.getElementById("internet-930"),
+          m200: document.getElementById("modern-200"),
+          i200: document.getElementById("internet-200")
         };
 
-        // Live Result UI Update
         if (data.live) {
           const rawTime = data.live.time || "";
           const timeStr = rawTime.substring(rawTime.length - 8);
-
-          // မနက်ပိုင်း 12:01 နှင့် ညနေပိုင်း 16:30 အပြီးတွင် စနစ်အား ရပ်တန့်စေသည့် Logic
           const timeOnly = timeStr.trim();
           const isMorningClosed = timeOnly >= "12:01:00" && timeOnly < "14:00:00";
           const isEveningClosed = timeOnly >= "16:30:00" || timeOnly < "09:30:00";
 
           if (isMorningClosed || isEveningClosed) {
-            isMarketClosed = true;
             ui.badge.className = "flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold";
             ui.dot.className = "w-1.5 h-1.5 rounded-full bg-amber-400";
             ui.text.innerText = isMorningClosed ? "MORNING CLOSED" : "MARKET CLOSED";
           } else {
-            isMarketClosed = false;
             ui.badge.className = "flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold";
             ui.dot.className = "w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-fast";
             ui.text.innerText = "REAL-TIME (3S)";
@@ -169,16 +182,25 @@
           ui.set.innerText = data.live.set || "--";
           ui.value.innerText = data.live.value || "--";
           ui.time.innerText = timeStr;
+
+          // Modern & Internet 9:30 / 2:00 Data Sync
+          if (data.live.modern_930 || data.live.modern_morning) ui.m930.innerText = data.live.modern_930 || data.live.modern_morning;
+          if (data.live.internet_930 || data.live.internet_morning) ui.i930.innerText = data.live.internet_930 || data.live.internet_morning;
+          if (data.live.modern_200 || data.live.modern_evening) ui.m200.innerText = data.live.modern_200 || data.live.modern_evening;
+          if (data.live.internet_200 || data.live.internet_evening) ui.i200.innerText = data.live.internet_200 || data.live.internet_evening;
         }
 
-        // History Data List
+        // Official Sessions History (11:00, 12:01, 15:00, 16:30)
         if (data.result && data.result.length > 0) {
           ui.history.innerHTML = "";
           data.result.forEach(item => {
             const row = document.createElement("div");
             row.className = "flex justify-between items-center bg-slate-900/80 border border-slate-800/40 px-4 py-3 rounded-xl";
             row.innerHTML = `
-              <span class="text-xs text-slate-400 font-medium">${item.open_time}</span>
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                <span class="text-xs text-slate-400 font-medium">${item.open_time}</span>
+              </div>
               <span class="font-bold text-cyan-400 text-lg">${item.twod}</span>
             `;
             ui.history.appendChild(row);
