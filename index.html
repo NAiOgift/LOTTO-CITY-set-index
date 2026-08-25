@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOTTO CITY - Live Stock Data</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center p-4">
+
+  <!-- Header -->
+  <header class="w-full max-w-md py-4 text-center border-b border-slate-800">
+    <h1 class="text-2xl font-black tracking-wider text-amber-400">LOTTO CITY</h1>
+    <p class="text-xs text-slate-400">Real-time Stock Exchange & Live Data</p>
+  </header>
+
+  <!-- Ad Slot: Top -->
+  <div class="w-full max-w-md my-4 h-16 bg-slate-900 border border-dashed border-slate-700 flex items-center justify-center text-xs text-slate-500 rounded">
+    ကြော်ငြာနေရာ (Banner Ad 320x50)
+  </div>
+
+  <!-- Live Card -->
+  <div class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl text-center">
+    <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+      <span class="flex items-center gap-1">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> LIVE RESULT
+      </span>
+      <span id="live-time">Updating...</span>
+    </div>
+
+    <div id="live-twod" class="text-7xl font-black text-amber-400 my-4 tracking-tight">--</div>
+
+    <div class="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-slate-800/80 text-sm">
+      <div class="bg-slate-950/50 p-2 rounded-lg">
+        <span class="text-slate-500 text-xs block">SET</span>
+        <span id="live-set" class="font-semibold text-slate-200">--</span>
+      </div>
+      <div class="bg-slate-950/50 p-2 rounded-lg">
+        <span class="text-slate-500 text-xs block">VALUE</span>
+        <span id="live-value" class="font-semibold text-slate-200">--</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ad Slot: Middle -->
+  <div class="w-full max-w-md my-4 h-24 bg-slate-900 border border-dashed border-slate-700 flex items-center justify-center text-xs text-slate-500 rounded">
+    ကြော်ငြာနေရာ (Banner Ad 300x250)
+  </div>
+
+  <!-- History Section -->
+  <div class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-xl p-4">
+    <h2 class="text-sm font-semibold text-slate-300 mb-3">ယနေ့ထွက်ဂဏန်းများ</h2>
+    <div id="history-list" class="space-y-2">
+      <p class="text-xs text-slate-500 text-center py-2">ဒေတာရယူနေသည်...</p>
+    </div>
+  </div>
+
+  <script>
+    async function fetchStockData() {
+      try {
+        const res = await fetch("https://api.thaistock2d.com/live");
+        const data = await res.json();
+
+        if (data.live) {
+          document.getElementById("live-twod").innerText = data.live.twod || "--";
+          document.getElementById("live-set").innerText = data.live.set || "--";
+          document.getElementById("live-value").innerText = data.live.value || "--";
+          document.getElementById("live-time").innerText = data.live.time || "Live";
+        }
+
+        if (data.result && data.result.length > 0) {
+          const list = document.getElementById("history-list");
+          list.innerHTML = "";
+          data.result.forEach(item => {
+            const row = document.createElement("div");
+            row.className = "flex justify-between items-center bg-slate-950 p-3 rounded-lg text-sm";
+            row.innerHTML = `<span class="text-slate-400">${item.open_time}</span><span class="font-bold text-amber-400 text-base">${item.twod}</span>`;
+            list.appendChild(row);
+          });
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+      }
+    }
+
+    fetchStockData();
+    setInterval(fetchStockData, 10000); // 10s တစ်ခါ auto update
+  </script>
+</body>
+</html>
