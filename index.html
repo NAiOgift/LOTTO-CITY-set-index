@@ -18,12 +18,10 @@
 </head>
 <body class="bg-[#070b14] text-slate-100 min-h-screen flex flex-col items-center justify-between p-4 selection:bg-cyan-400 selection:text-black">
 
-  <!-- Ambient Glow -->
   <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-64 bg-cyan-500/10 blur-[120px] pointer-events-none -z-10"></div>
 
   <div class="w-full max-w-md flex flex-col gap-4">
     
-    <!-- Header -->
     <header class="flex items-center justify-between py-3 px-1">
       <div>
         <div class="flex items-center gap-2">
@@ -61,7 +59,7 @@
       </div>
     </div>
 
-    <!-- VIP မွေးဂဏန်း Section (Admin Connected) -->
+    <!-- VIP မွေးဂဏန်း Section -->
     <div class="glass-card rounded-3xl p-5 shadow-xl border border-cyan-500/20">
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
@@ -88,7 +86,7 @@
       <p class="text-[10px] text-slate-500 text-center mt-2">တနင်္လာ မှ သောကြာ အထိ ထွက်သည်အထိ လိုက်ရန် မွေးဂဏန်းများ</p>
     </div>
 
-    <!-- Modern & Internet 2D Section (Admin Connected) -->
+    <!-- Modern & Internet 2D Section -->
     <div class="glass-card rounded-3xl p-5 shadow-xl">
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
@@ -99,7 +97,6 @@
       </div>
 
       <div class="grid grid-cols-2 gap-3">
-        <!-- 9:30 AM Section -->
         <div class="bg-slate-900/80 border border-slate-800/60 p-3.5 rounded-2xl">
           <div class="flex justify-between items-center mb-2 pb-1 border-b border-slate-800/50">
             <span class="text-xs font-bold text-amber-400">09:30 AM</span>
@@ -115,7 +112,6 @@
           </div>
         </div>
 
-        <!-- 2:00 PM Section -->
         <div class="bg-slate-900/80 border border-slate-800/60 p-3.5 rounded-2xl">
           <div class="flex justify-between items-center mb-2 pb-1 border-b border-slate-800/50">
             <span class="text-xs font-bold text-amber-400">02:00 PM</span>
@@ -147,9 +143,7 @@
     <!-- Official Telegram Channel Button -->
     <a href="https://t.me/lottocity_mm" target="_blank" rel="noopener noreferrer" class="w-full glass-card hover:bg-slate-800/60 transition duration-200 border-slate-800 rounded-2xl p-4 flex items-center justify-between group">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 font-bold text-lg">
-          ✈
-        </div>
+        <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 font-bold text-lg">✈</div>
         <div class="text-left">
           <div class="text-sm font-bold text-slate-200">Official Telegram Channel</div>
           <div class="text-xs text-slate-400">နေ့စဉ် သတင်းနှင့် အချက်အလက်များရယူရန်</div>
@@ -164,7 +158,6 @@
     © 2026 LOTTO CITY. Powered by Live 2D Data.
   </footer>
 
-  <!-- Scripts -->
   <script>
     async function fetchStockData() {
       try {
@@ -226,11 +219,16 @@
       }
     }
 
-    // Remote Admin Control Data Fetcher
+    const API_URL = "https://api.jsonbin.io/v3/b/66cb3f9fad19ca34f89b9d36";
+    const MASTER_KEY = "$2a$10$f6B0Z8z14m1rQc9E.Wv1ee8rN03sWJ2ZcQGg7lS6sK4U7FmC.zL0i";
+
     async function loadRemoteData() {
       try {
-        const res = await fetch("https://lotto-city-tips-default-rtdb.firebaseio.com/appData.json");
-        const data = await res.json();
+        const res = await fetch(API_URL + "/latest", {
+          headers: { "X-Master-Key": MASTER_KEY }
+        });
+        const json = await res.json();
+        const data = json.record;
         if (data) {
           document.getElementById("display-pat").innerText = data.pat || "--";
           document.getElementById("display-main").innerText = data.main || "--";
@@ -248,10 +246,9 @@
     fetchStockData();
     loadRemoteData();
     setInterval(fetchStockData, 3000); 
-    setInterval(loadRemoteData, 5000); // 5 စက္ကန့်တစ်ခါ Admin ဒေတာ အလိုအလျောက် စစ်ဆေးခြင်း
+    setInterval(loadRemoteData, 5000);
   </script>
 
-  <!-- Adsterra Monetization Script -->
   <script type="text/javascript" src="https://pl31021178.profitableratecpmnetwork.com/3b/71/e7/3b71e7fd9de2da000a9244f2754787b7.js"></script>
 </body>
 </html>
