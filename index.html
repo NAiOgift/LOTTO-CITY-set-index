@@ -75,11 +75,11 @@
           <div id="cfg-pat" class="text-xl font-extrabold text-cyan-400">--</div>
         </div>
         <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
-          <div class="text-[10px] text-slate-400 mb-1">တပတ်စာမွေးဘရိတ်</div>
+          <div class="text-[10px] text-slate-400 mb-1">VIPမွေးဂဏန်း</div>
           <div id="cfg-main" class="text-xl font-extrabold text-amber-400">--</div>
         </div>
         <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
-          <div class="text-[10px] text-slate-400 mb-1">တပတ်စာမွေးဂဏန်း</div>
+          <div class="text-[10px] text-slate-400 mb-1">မွေးဘရိတ်</div>
           <div id="cfg-sub" class="text-sm font-bold text-slate-200 mt-1">--</div>
         </div>
       </div>
@@ -159,19 +159,15 @@
   </footer>
 
   <script>
-    // ==========================================
-    // ဤအောက်ပါနေရာတွင်သာ ဂဏန်းများကို ပြောင်းလဲပါ
-    // ==========================================
     const myLottoData = {
-      pat: "8",            // မွေးပတ်သီး
-      main: "6.1",          // တပတ်စာမွေးဘရိတ်
-      sub: "61, 92, 97",   // တပတ်စာမွေးဂဏန်း
-      m930: "61",          // 9:30 Modern
-      i930: "05",          // 9:30 Internet
-      m200: "--",          // 2:00 Modern
-      i200: "--"           // 2:00 Internet
+      pat: "8",
+      main: "1.6",
+      sub: "06, 97, 65",
+      m930: "61",
+      i930: "05",
+      m200: "--",
+      i200: "--"
     };
-    // ==========================================
 
     function renderLottoData() {
       document.getElementById("cfg-pat").innerText = myLottoData.pat;
@@ -248,7 +244,12 @@
     setInterval(fetchStockData, 3000); 
   </script>
 
-  <!-- Adsterra Monetization Script -->
+  <!-- 1. Adsterra Social Bar Ads (အောက်ပါနေရာတွင် မိမိ Social Bar Code ထည့်ပါ) -->
+  YOUR_SOCIAL_BAR_CODE_HERE
+
+  <!-- 2. Existing Adsterra Script -->
   <script type="text/javascript" src="https://pl31021178.profitableratecpmnetwork.com/3b/71/e7/3b71e7fd9de2da000a9244f2754787b7.js"></script>
+
 </body>
 </html>
+
