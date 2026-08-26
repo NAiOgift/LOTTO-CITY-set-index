@@ -88,7 +88,7 @@
 
       <div id="unlocked-content" class="hidden py-2 animate-fade-in">
         <div class="text-xs text-slate-400 mb-1">ဒီနေ့အတွက် အထူးဂဏန်း</div>
-        <div class="text-3xl font-black text-cyan-400 tracking-wider my-1">92 - 97</div>
+        <div class="text-3xl font-black text-cyan-400 tracking-wider my-1">86 - 68</div>
         <span class="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-0.5 rounded-full font-semibold">VIP UNLOCKED ✓</span>
       </div>
     </div>
@@ -228,10 +228,10 @@
     }
 
     function unlockGift() {
-      const directLink = "YOUR_DIRECT_LINK_HERE";
-      if (directLink !== "YOUR_DIRECT_LINK_HERE") {
-        window.open(directLink, '_blank');
-      }
+      // High-Revenue Adsterra Ads Invoke Link
+      const adUrl = "https://www.highrevenueformat.com/911e111c729b4e0f7907e026e0073b1d/invoke.js";
+      window.open(adUrl, '_blank');
+
       document.getElementById('locked-content').classList.add('hidden');
       document.getElementById('unlocked-content').classList.remove('hidden');
     }
@@ -281,7 +281,6 @@
         if (data.result && data.result.length > 0) {
           ui.history.innerHTML = "";
           data.result.forEach(item => {
-            // Check for 12:01 and 16:30 results
             if (item.open_time.includes("12:01")) {
               ui.res1201.innerText = item.twod;
             }
@@ -316,3 +315,4 @@
 
 </body>
 </html>
+
