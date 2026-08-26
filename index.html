@@ -43,19 +43,53 @@
         <span id="live-time" class="bg-slate-800/80 px-2.5 py-1 rounded-md text-slate-300">Syncing...</span>
       </div>
 
-      <div class="py-6 text-center">
+      <div class="py-5 text-center">
         <div id="live-twod" class="text-8xl font-black text-cyan-400 glow-cyan tracking-tight inline-block transition-all duration-300">--</div>
       </div>
 
+      <!-- SET INDEX & VALUE -->
       <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800/60">
-        <div class="bg-slate-900/60 border border-slate-800/50 p-3.5 rounded-2xl">
+        <div class="bg-slate-900/60 border border-slate-800/50 p-3 rounded-2xl">
           <span class="text-[11px] font-bold text-slate-400 tracking-wider block mb-1">SET INDEX</span>
-          <span id="live-set" class="text-lg font-bold text-slate-100 tracking-tight transition-all duration-300">--</span>
+          <span id="live-set" class="text-base font-bold text-slate-100 tracking-tight transition-all duration-300">--</span>
         </div>
-        <div class="bg-slate-900/60 border border-slate-800/50 p-3.5 rounded-2xl">
+        <div class="bg-slate-900/60 border border-slate-800/50 p-3 rounded-2xl">
           <span class="text-[11px] font-bold text-slate-400 tracking-wider block mb-1">VALUE</span>
-          <span id="live-value" class="text-lg font-bold text-slate-100 tracking-tight transition-all duration-300">--</span>
+          <span id="live-value" class="text-base font-bold text-slate-100 tracking-tight transition-all duration-300">--</span>
         </div>
+      </div>
+
+      <!-- 12:01 PM & 4:30 PM Live Results Display -->
+      <div class="grid grid-cols-2 gap-3 mt-3 pt-3 border-t border-slate-800/40">
+        <div class="bg-slate-900/90 border border-amber-500/30 p-3 rounded-2xl text-center">
+          <span class="text-[11px] font-bold text-amber-400 block mb-0.5">12:01 PM (မနက်)</span>
+          <span id="res-1201" class="text-2xl font-black text-cyan-400">--</span>
+        </div>
+        <div class="bg-slate-900/90 border border-amber-500/30 p-3 rounded-2xl text-center">
+          <span class="text-[11px] font-bold text-amber-400 block mb-0.5">04:30 PM (ညနေ)</span>
+          <span id="res-1630" class="text-2xl font-black text-cyan-400">--</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🎁 Reward Post / Gift Section -->
+    <div class="glass-card rounded-3xl p-5 shadow-xl border border-amber-500/30 text-center">
+      <div class="flex items-center justify-center gap-1.5 mb-2">
+        <span class="text-amber-400 text-base">🎁</span>
+        <h2 class="text-sm font-bold text-amber-400 tracking-wide">ယနေ့ အထူး လက်ဆောင်ဂဏန်း</h2>
+      </div>
+
+      <div id="locked-content" class="py-2">
+        <p class="text-xs text-slate-400 mb-3">ကြော်ငြာ နှိပ်ကြည့်ပြီးပါက လက်ဆောင်ဂဏန်း ပွင့်သွားမည်</p>
+        <button onclick="unlockGift()" class="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-xs px-5 py-2.5 rounded-xl shadow-lg hover:opacity-90 transition active:scale-95">
+          🔓 ကြော်ငြာကြည့်၍ လက်ဆောင်ယူမည်
+        </button>
+      </div>
+
+      <div id="unlocked-content" class="hidden py-2 animate-fade-in">
+        <div class="text-xs text-slate-400 mb-1">ဒီနေ့အတွက် အထူးဂဏန်း</div>
+        <div class="text-3xl font-black text-cyan-400 tracking-wider my-1">86 - 68</div>
+        <span class="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-0.5 rounded-full font-semibold">VIP UNLOCKED ✓</span>
       </div>
     </div>
 
@@ -193,6 +227,15 @@
       document.getElementById("cfg-i200").innerText = myLottoData.i200;
     }
 
+    function unlockGift() {
+      const directLink = "YOUR_DIRECT_LINK_HERE";
+      if (directLink !== "YOUR_DIRECT_LINK_HERE") {
+        window.open(directLink, '_blank');
+      }
+      document.getElementById('locked-content').classList.add('hidden');
+      document.getElementById('unlocked-content').classList.remove('hidden');
+    }
+
     async function fetchStockData() {
       try {
         const res = await fetch("https://api.thaistock2d.com/live");
@@ -204,6 +247,8 @@
           set: document.getElementById("live-set"),
           value: document.getElementById("live-value"),
           time: document.getElementById("live-time"),
+          res1201: document.getElementById("res-1201"),
+          res1630: document.getElementById("res-1630"),
           history: document.getElementById("history-list"),
           badge: document.getElementById("status-badge"),
           dot: document.getElementById("status-dot"),
@@ -236,6 +281,14 @@
         if (data.result && data.result.length > 0) {
           ui.history.innerHTML = "";
           data.result.forEach(item => {
+            // Check for 12:01 and 16:30 results
+            if (item.open_time.includes("12:01")) {
+              ui.res1201.innerText = item.twod;
+            }
+            if (item.open_time.includes("16:30") || item.open_time.includes("4:30")) {
+              ui.res1630.innerText = item.twod;
+            }
+
             const row = document.createElement("div");
             row.className = "flex justify-between items-center bg-slate-900/80 border border-slate-800/40 px-4 py-3 rounded-xl";
             row.innerHTML = `
