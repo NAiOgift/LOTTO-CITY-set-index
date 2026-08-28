@@ -36,7 +36,9 @@
       </div>
     </header>
 
+    <!-- PAGE 1: ပင်မ မျက်နှာပြင် -->
     <div id="page-1" class="flex flex-col gap-4">
+      <!-- Main Live Result Card -->
       <div class="glass-card rounded-3xl p-6 shadow-2xl relative overflow-hidden">
         <div class="flex justify-between items-center text-xs text-slate-400 font-medium">
           <span>CURRENT RESULT</span>
@@ -59,6 +61,7 @@
         </div>
       </div>
 
+      <!-- 9:30 / 12:01 / 2:00 / 4:30 Sessions Card -->
       <div class="glass-card rounded-3xl p-5 shadow-xl">
         <h2 class="text-sm font-bold text-slate-200 tracking-wide mb-3 flex items-center gap-2">
           <span class="text-cyan-400">⚡</span> နေ့စဉ် ထွက်ဂဏန်းများ
@@ -84,6 +87,7 @@
         </div>
       </div>
 
+      <!-- 🎁 နေ့တိုက် အထူးလက်ဆောင်ဂဏန်း Card -->
       <div class="glass-card rounded-3xl p-5 shadow-xl border border-amber-500/30 text-center">
         <div class="flex items-center justify-center gap-1.5 mb-2">
           <span class="text-amber-400 text-base">🎁</span>
@@ -98,12 +102,19 @@
         </div>
 
         <div id="unlocked-content" class="hidden py-2 animate-fade-in">
-          <div class="text-xs text-slate-400 mb-1">ဒီနေ့အတွက် အထူးဂဏန်း</div>
-          <div class="text-3xl font-black text-cyan-400 tracking-wider my-1">86 - 68</div>
+          <div class="text-xs text-slate-400 mb-2">ဒီနေ့အတွက် အထူး (၄) ကွက်</div>
+          <!-- ၄ ကွက်ပြသရန် Box ဒီဇိုင်း -->
+          <div class="grid grid-cols-4 gap-2 my-2">
+            <div class="bg-slate-900/90 border border-cyan-500/40 p-2.5 rounded-2xl text-xl font-black text-cyan-400" id="gift-1">70</div>
+            <div class="bg-slate-900/90 border border-cyan-500/40 p-2.5 rounded-2xl text-xl font-black text-cyan-400" id="gift-2">75</div>
+            <div class="bg-slate-900/90 border border-cyan-500/40 p-2.5 rounded-2xl text-xl font-black text-cyan-400" id="gift-3">20</div>
+            <div class="bg-slate-900/90 border border-cyan-500/40 p-2.5 rounded-2xl text-xl font-black text-cyan-400" id="gift-4">25</div>
+          </div>
           <span class="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-0.5 rounded-full font-semibold">VIP UNLOCKED ✓</span>
         </div>
       </div>
 
+      <!-- ✦ တစ်ပတ်စာ လက်ဆောင် သို့ သွားရန် ခလုတ် -->
       <div class="glass-card rounded-3xl p-4 shadow-xl border border-cyan-500/30 text-center">
         <div class="text-xs text-slate-300 font-semibold mb-2.5">တစ်ပတ်စာ မွေးဂဏန်းများနှင့် အထူးအခွေများ ကြည့်ရန်</div>
         <button onclick="switchTab(2)" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-extrabold text-sm py-3 rounded-2xl shadow-lg hover:opacity-90 transition active:scale-95 flex items-center justify-center gap-2">
@@ -113,6 +124,7 @@
       </div>
     </div>
 
+    <!-- PAGE 2: ဒုတိယ မျက်နှာပြင် (မွေးဂဏန်းများ) -->
     <div id="page-2" class="hidden flex-col gap-4">
       <div class="glass-card rounded-3xl p-5 shadow-xl border border-cyan-500/20">
         <div class="flex items-center justify-between mb-4 border-b border-slate-800/80 pb-3">
@@ -124,6 +136,7 @@
         </div>
 
         <div class="space-y-3">
+          <!-- မွေးပတ်သီး & မွေးဘရိတ် -->
           <div class="grid grid-cols-2 gap-3">
             <div class="bg-slate-900/80 border border-slate-800/60 p-3.5 rounded-2xl text-center">
               <div class="text-xs text-slate-400 mb-1">မွေးပတ်သီး</div>
@@ -135,6 +148,7 @@
             </div>
           </div>
 
+          <!-- အထူးမွေး ၄ ကွက် -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-4 rounded-2xl">
             <div class="text-xs text-slate-400 mb-2 text-center">အထူးမွေး (၄) ကွက်</div>
             <div id="cfg-special" class="text-lg font-bold text-slate-100 text-center tracking-widest text-cyan-300">
@@ -142,6 +156,7 @@
             </div>
           </div>
 
+          <!-- အပူးပါ ၄ လုံးအခွေ -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-4 rounded-2xl">
             <div class="text-xs text-slate-400 mb-2 text-center">အပူးပါ (၄) လုံးအခွေ</div>
             <div id="cfg-akway" class="text-lg font-bold text-amber-400 text-center tracking-widest">
@@ -153,11 +168,13 @@
         <p class="text-[10px] text-slate-500 text-center mt-4 mb-2">တနင်္လာ မှ သောကြာ အထိ ထွက်သည်အထိ လိုက်ရန် မွေးဂဏန်းများ</p>
       </div>
 
+      <!-- ပင်မ မျက်နှာပြင်သို့ ပြန်သွားရန် ခလုတ် -->
       <button onclick="switchTab(1)" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs py-3 rounded-2xl border border-slate-700 transition active:scale-95 flex items-center justify-center gap-2">
         <span>← 🏠 ပင်မ စာမျက်နှာသို့ ပြန်သွားမည်</span>
       </button>
     </div>
 
+    <!-- Official Telegram Channel Button -->
     <a href="https://t.me/lottocity_mm" target="_blank" rel="noopener noreferrer" class="w-full glass-card hover:bg-slate-800/60 transition duration-200 border-slate-800 rounded-2xl p-4 flex items-center justify-between group mt-1">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 font-bold text-lg">✈</div>
@@ -194,9 +211,16 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // မွေးဂဏန်းနှင့် လက်ဆောင်ဂဏန်းများ ပြင်ရန်နေရာ
     const myLottoData = {
       m930: "61",
       m200: "--",
+      // နေ့တိုက် လက်ဆောင် (၄) ကွက်
+      gift1: "70",
+      gift2: "75",
+      gift3: "20",
+      gift4: "25",
+      // မွေးဂဏန်းများ
       pat: "9",
       brake: "1 / 6",
       special: "06 • 97 • 65 • 82",
@@ -206,6 +230,12 @@
     function renderLottoData() {
       document.getElementById("cfg-m930").innerText = myLottoData.m930;
       document.getElementById("cfg-m200").innerText = myLottoData.m200;
+      
+      document.getElementById("gift-1").innerText = myLottoData.gift1;
+      document.getElementById("gift-2").innerText = myLottoData.gift2;
+      document.getElementById("gift-3").innerText = myLottoData.gift3;
+      document.getElementById("gift-4").innerText = myLottoData.gift4;
+
       document.getElementById("cfg-pat").innerText = myLottoData.pat;
       document.getElementById("cfg-brake").innerText = myLottoData.brake;
       document.getElementById("cfg-special").innerText = myLottoData.special;
@@ -280,4 +310,3 @@
 
 </body>
 </html>
-
