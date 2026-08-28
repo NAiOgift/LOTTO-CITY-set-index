@@ -36,7 +36,9 @@
       </div>
     </header>
 
+    <!-- PAGE 1: ပင်မ မျက်နှာပြင် -->
     <div id="page-1" class="flex flex-col gap-4">
+      <!-- Main Live Result Card -->
       <div class="glass-card rounded-3xl p-6 shadow-2xl relative overflow-hidden">
         <div class="flex justify-between items-center text-xs text-slate-400 font-medium">
           <span>CURRENT RESULT</span>
@@ -59,24 +61,29 @@
         </div>
       </div>
 
+      <!-- 9:30 / 12:01 / 2:00 / 4:30 Sessions Card (အစဉ်လိုက် ပြင်ဆင်ပြီး) -->
       <div class="glass-card rounded-3xl p-5 shadow-xl">
         <h2 class="text-sm font-bold text-slate-200 tracking-wide mb-3 flex items-center gap-2">
           <span class="text-cyan-400">⚡</span> နေ့စဉ် ထွက်ဂဏန်းများ
         </h2>
         
         <div class="grid grid-cols-2 gap-2.5">
+          <!-- 1. မနက် 9:30 -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">09:30 AM (မနက်)</span>
             <span id="cfg-m930" class="text-2xl font-black text-cyan-400">--</span>
           </div>
+          <!-- 2. မနက် 12:01 -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">12:01 PM (မနက်)</span>
             <span id="res-1201" class="text-2xl font-black text-cyan-400">--</span>
           </div>
+          <!-- 3. ညနေ 02:00 -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">02:00 PM (ညနေ)</span>
             <span id="cfg-m200" class="text-2xl font-black text-cyan-400">--</span>
           </div>
+          <!-- 4. ညနေ 04:30 -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">04:30 PM (ညနေ)</span>
             <span id="res-1630" class="text-2xl font-black text-cyan-400">--</span>
@@ -84,6 +91,7 @@
         </div>
       </div>
 
+      <!-- 🎁 နေ့တိုက် အထူးလက်ဆောင်ဂဏန်း Card -->
       <div class="glass-card rounded-3xl p-5 shadow-xl border border-amber-500/30 text-center relative overflow-hidden">
         <div class="flex items-center justify-center gap-1.5 mb-2">
           <span class="text-amber-400 text-base">🎁</span>
@@ -98,6 +106,7 @@
         </div>
 
         <div id="unlocked-content" class="hidden py-2 animate-fade-in">
+          <!-- Native Banner Ads Box -->
           <div class="w-full flex justify-center items-center my-2 rounded-2xl overflow-hidden min-h-[250px] bg-slate-900/50">
             <script type="text/javascript">
               atOptions = {
@@ -122,6 +131,7 @@
         </div>
       </div>
 
+      <!-- ✦ တစ်ပတ်စာ လက်ဆောင် သို့ သွားရန် ခလုတ် -->
       <div class="glass-card rounded-3xl p-4 shadow-xl border border-cyan-500/30 text-center">
         <div class="text-xs text-slate-300 font-semibold mb-2.5">တစ်ပတ်စာ မွေးဂဏန်းများနှင့် အထူးအခွေများ ကြည့်ရန်</div>
         <button onclick="switchTab(2)" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-extrabold text-sm py-3 rounded-2xl shadow-lg hover:opacity-90 transition active:scale-95 flex items-center justify-center gap-2">
@@ -131,6 +141,7 @@
       </div>
     </div>
 
+    <!-- PAGE 2: ဒုတိယ မျက်နှာပြင် (မွေးဂဏန်းများ) -->
     <div id="page-2" class="hidden flex-col gap-4">
       <div class="glass-card rounded-3xl p-5 shadow-xl border border-cyan-500/20">
         <div class="flex items-center justify-between mb-4 border-b border-slate-800/80 pb-3">
@@ -176,6 +187,7 @@
       </button>
     </div>
 
+    <!-- Official Telegram Channel Button -->
     <a href="https://t.me/lottocity_mm" target="_blank" rel="noopener noreferrer" class="w-full glass-card hover:bg-slate-800/60 transition duration-200 border-slate-800 rounded-2xl p-4 flex items-center justify-between group mt-1">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 font-bold text-lg">✈</div>
@@ -314,6 +326,7 @@
     setInterval(fetchStockData, 3000); 
   </script>
 
+  <!-- Popunder Ads Script -->
   <script type="text/javascript" src="https://pl31021178.profitableratecpmnetwork.com/3b/71/e7/3b71e7fd9de2da000a9244f2754787b7.js"></script>
 
 </body>
