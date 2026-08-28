@@ -87,8 +87,8 @@
         </div>
       </div>
 
-      <!-- 🎁 နေ့တိုက် အထူးလက်ဆောင်ဂဏန်း Card -->
-      <div class="glass-card rounded-3xl p-5 shadow-xl border border-amber-500/30 text-center">
+      <!-- 🎁 နေ့တိုက် အထူးလက်ဆောင်ဂဏန်း Card (+ Ads Integration) -->
+      <div class="glass-card rounded-3xl p-5 shadow-xl border border-amber-500/30 text-center relative overflow-hidden">
         <div class="flex items-center justify-center gap-1.5 mb-2">
           <span class="text-amber-400 text-base">🎁</span>
           <h2 class="text-sm font-bold text-amber-400 tracking-wide">နေ့တိုက် အထူး လက်ဆောင်ဂဏန်း</h2>
@@ -96,12 +96,20 @@
 
         <div id="locked-content" class="py-2">
           <p class="text-xs text-slate-400 mb-3">အောက်ပါ ခလုတ်ကို နှိပ်၍ လက်ဆောင်ဂဏန်း ကြည့်နိုင်ပါသည်</p>
-          <button onclick="unlockGift()" class="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-xs px-5 py-2.5 rounded-xl shadow-lg hover:opacity-90 transition active:scale-95">
-            🔓 လက်ဆောင်ဂဏန်း ကြည့်မည်
+          <button onclick="unlockGift()" class="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-xs px-5 py-2.5 rounded-xl shadow-lg hover:opacity-90 transition active:scale-95 flex items-center gap-2 mx-auto">
+            <span>🔓 ကြော်ငြာကြည့်ပြီး ဂဏန်းယူမည်</span>
           </button>
         </div>
 
         <div id="unlocked-content" class="hidden py-2 animate-fade-in">
+          
+          <!-- 📢 Sponsor Banner Ads နေရာ -->
+          <a id="ad-link" href="https://t.me/lottocity_mm" target="_blank" rel="noopener noreferrer" class="block mb-3 p-3 rounded-2xl bg-gradient-to-r from-cyan-950/80 to-slate-900 border border-cyan-500/30 hover:border-cyan-400/60 transition group text-left relative overflow-hidden">
+            <span class="absolute top-1 right-2 text-[9px] bg-amber-500/20 text-amber-400 border border-amber-500/30 px-1.5 py-0.2 rounded font-bold">SPONSOR ADS</span>
+            <div class="text-xs font-bold text-cyan-300 group-hover:text-cyan-200" id="ad-title">🔥 VIP အထူးစလော့နှင့် 2D ဒိုင်ကြီးများ</div>
+            <div class="text-[10px] text-slate-400 mt-0.5" id="ad-desc">ယုံကြည်စိတ်ချစွာ ကစားနိုင်သော တရားဝင် Channel သို့ သွားရန် နှိပ်ပါ</div>
+          </a>
+
           <div class="text-xs text-slate-400 mb-2">ဒီနေ့အတွက် အထူး (၄) ကွက်</div>
           <!-- ၄ ကွက်ပြသရန် Box ဒီဇိုင်း -->
           <div class="grid grid-cols-4 gap-2 my-2">
@@ -211,7 +219,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // မွေးဂဏန်းနှင့် လက်ဆောင်ဂဏန်းများ ပြင်ရန်နေရာ
+    // မွေးဂဏန်း၊ လက်ဆောင်ဂဏန်း နှင့် Ads ကြော်ငြာများ ပြင်ရန်နေရာ
     const myLottoData = {
       m930: "61",
       m200: "--",
@@ -220,6 +228,10 @@
       gift2: "75",
       gift3: "20",
       gift4: "25",
+      // Ads ကြော်ငြာ အချက်အလက်များ
+      adTitle: "🔥 VIP အထူးစလော့နှင့် 2D ဒိုင်ကြီးများ",
+      adDesc: "ယုံကြည်စိတ်ချစွာ ကစားနိုင်သော တရားဝင် Channel သို့ သွားရန် နှိပ်ပါ",
+      adUrl: "https://t.me/lottocity_mm", // Direct Link (သို့) Telegram Link ထည့်ရန်
       // မွေးဂဏန်းများ
       pat: "9",
       brake: "1 / 6",
@@ -236,6 +248,11 @@
       document.getElementById("gift-3").innerText = myLottoData.gift3;
       document.getElementById("gift-4").innerText = myLottoData.gift4;
 
+      // Render Ads Data
+      document.getElementById("ad-title").innerText = myLottoData.adTitle;
+      document.getElementById("ad-desc").innerText = myLottoData.adDesc;
+      document.getElementById("ad-link").href = myLottoData.adUrl;
+
       document.getElementById("cfg-pat").innerText = myLottoData.pat;
       document.getElementById("cfg-brake").innerText = myLottoData.brake;
       document.getElementById("cfg-special").innerText = myLottoData.special;
@@ -243,6 +260,12 @@
     }
 
     function unlockGift() {
+      // Direct Link / Ads Link သို့ တန်းပွင့်စေရန်
+      if (myLottoData.adUrl) {
+        window.open(myLottoData.adUrl, '_blank');
+      }
+
+      // ဂဏန်းများ ဖွင့်ပြပေးခြင်း
       document.getElementById('locked-content').classList.add('hidden');
       document.getElementById('unlocked-content').classList.remove('hidden');
     }
