@@ -61,7 +61,7 @@
         </div>
       </div>
 
-      <!-- 12:01 / 4:30 (အပေါ်တန်း) & 9:30 / 2:00 (အောက်တန်း) Card -->
+      <!-- 12:01 / 4:30 & 9:30 / 2:00 Card -->
       <div class="glass-card rounded-3xl p-5 shadow-xl">
         <h2 class="text-sm font-bold text-slate-200 tracking-wide mb-3 flex items-center gap-2">
           <span class="text-cyan-400">⚡</span> နေ့စဉ် ထွက်ဂဏန်းများ
@@ -69,24 +69,37 @@
         
         <div class="grid grid-cols-2 gap-2.5">
           <!-- 12:01 PM -->
-          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center">
+          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">12:01 PM (မနက်)</span>
-            <span id="res-1201" class="text-2xl font-black text-cyan-400">--</span>
+            <span id="res-1201" class="text-2xl font-black text-cyan-400 my-auto">--</span>
           </div>
+
           <!-- 04:30 PM -->
-          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center">
+          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">04:30 PM (ညနေ)</span>
-            <span id="res-1630" class="text-2xl font-black text-cyan-400">--</span>
+            <span id="res-1630" class="text-2xl font-black text-cyan-400 my-auto">--</span>
           </div>
-          <!-- 09:30 AM -->
+
+          <!-- 09:30 AM (MOD / NET) -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">09:30 AM (မနက်)</span>
-            <span id="cfg-m930" class="text-2xl font-black text-cyan-400">--</span>
+            <div id="cfg-m930" class="text-2xl font-black text-cyan-400 mb-1">--</div>
+            <div class="flex justify-center items-center gap-2 text-[10px] pt-1.5 border-t border-slate-800/80">
+              <span class="text-slate-400">MOD: <b id="m930-mod" class="text-amber-300 font-bold">--</b></span>
+              <span class="text-slate-600">•</span>
+              <span class="text-slate-400">NET: <b id="m930-net" class="text-amber-300 font-bold">--</b></span>
+            </div>
           </div>
-          <!-- 02:00 PM -->
+
+          <!-- 02:00 PM (MOD / NET) -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">02:00 PM (ညနေ)</span>
-            <span id="cfg-m200" class="text-2xl font-black text-cyan-400">--</span>
+            <div id="cfg-m200" class="text-2xl font-black text-cyan-400 mb-1">--</div>
+            <div class="flex justify-center items-center gap-2 text-[10px] pt-1.5 border-t border-slate-800/80">
+              <span class="text-slate-400">MOD: <b id="m200-mod" class="text-amber-300 font-bold">--</b></span>
+              <span class="text-slate-600">•</span>
+              <span class="text-slate-400">NET: <b id="m200-net" class="text-amber-300 font-bold">--</b></span>
+            </div>
           </div>
         </div>
       </div>
@@ -226,12 +239,15 @@
 
     const myLottoData = {
       m930: "61",
+      m930_mod: "1",
+      m930_net: "+",
       m200: "--",
+      m200_mod: "--",
+      m200_net: "--",
       gift1: "70",
       gift2: "75",
       gift3: "20",
       gift4: "25",
-      // Adsterra Direct Link (ကြော်ငြာ Link)
       adDirectUrl: "https://www.highrevenueformat.com/911e111c729b4e0f7907e026e0073b1d/invoke.js",
       pat: "9",
       brake: "1 / 6",
@@ -241,7 +257,12 @@
 
     function renderLottoData() {
       document.getElementById("cfg-m930").innerText = myLottoData.m930;
+      document.getElementById("m930-mod").innerText = myLottoData.m930_mod;
+      document.getElementById("m930-net").innerText = myLottoData.m930_net;
+
       document.getElementById("cfg-m200").innerText = myLottoData.m200;
+      document.getElementById("m200-mod").innerText = myLottoData.m200_mod;
+      document.getElementById("m200-net").innerText = myLottoData.m200_net;
       
       document.getElementById("gift-1").innerText = myLottoData.gift1;
       document.getElementById("gift-2").innerText = myLottoData.gift2;
@@ -255,12 +276,10 @@
     }
 
     function unlockGift() {
-      // Adsterra Direct Link ကြော်ငြာ ပွင့်စေခြင်း
       if (myLottoData.adDirectUrl) {
         window.open(myLottoData.adDirectUrl, '_blank');
       }
 
-      // ဂဏန်းများ ဖွင့်ပြပေးခြင်း
       document.getElementById('locked-content').classList.add('hidden');
       document.getElementById('unlocked-content').classList.remove('hidden');
     }
@@ -278,6 +297,12 @@
           time: document.getElementById("live-time"),
           res1201: document.getElementById("res-1201"),
           res1630: document.getElementById("res-1630"),
+          m930: document.getElementById("cfg-m930"),
+          m930Mod: document.getElementById("m930-mod"),
+          m930Net: document.getElementById("m930-net"),
+          m200: document.getElementById("cfg-m200"),
+          m200Mod: document.getElementById("m200-mod"),
+          m200Net: document.getElementById("m200-net"),
           badge: document.getElementById("status-badge"),
           dot: document.getElementById("status-dot"),
           text: document.getElementById("status-text")
@@ -309,10 +334,20 @@
         if (data.result && data.result.length > 0) {
           data.result.forEach(item => {
             if (item.open_time.includes("12:01")) {
-              ui.res1201.innerText = item.twod;
+              if (item.twod) ui.res1201.innerText = item.twod;
             }
             if (item.open_time.includes("16:30") || item.open_time.includes("4:30")) {
-              ui.res1630.innerText = item.twod;
+              if (item.twod) ui.res1630.innerText = item.twod;
+            }
+            if (item.open_time.includes("09:30") || item.open_time.includes("9:30")) {
+              if (item.twod) ui.m930.innerText = item.twod;
+              if (item.modern) ui.m930Mod.innerText = item.modern;
+              if (item.internet) ui.m930Net.innerText = item.internet;
+            }
+            if (item.open_time.includes("14:00") || item.open_time.includes("2:00")) {
+              if (item.twod) ui.m200.innerText = item.twod;
+              if (item.modern) ui.m200Mod.innerText = item.modern;
+              if (item.internet) ui.m200Net.innerText = item.internet;
             }
           });
         }
