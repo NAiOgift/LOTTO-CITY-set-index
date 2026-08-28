@@ -165,12 +165,18 @@
     <!-- PAGE 2: ဒုတိယ မျက်နှာပြင် (မွေးဂဏန်းများ) -->
     <div id="page-2" class="hidden flex-col gap-4">
       <div class="glass-card rounded-3xl p-5 shadow-xl border border-cyan-500/20">
-        <div class="flex items-center justify-between mb-4 border-b border-slate-800/80 pb-3">
+        <div class="flex items-center justify-between mb-3 border-b border-slate-800/80 pb-3">
           <div class="flex items-center gap-2">
             <span class="text-amber-400 text-sm">✦</span>
             <h2 class="text-sm font-bold text-slate-200 tracking-wide">တစ်ပတ်စာ VIP မွေးဂဏန်းများ</h2>
           </div>
           <span class="text-[10px] bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2.5 py-0.5 rounded-full font-semibold">VIP TIPS</span>
+        </div>
+
+        <!-- Date Range Display Box -->
+        <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-xl py-2 px-3 mb-4 text-center">
+          <span class="text-[11px] text-slate-300 font-medium">ရက်စွဲ - </span>
+          <span id="cfg-date" class="text-xs font-bold text-cyan-400 tracking-wide">24-08-2026 မှ 28-08-2026 ထိ</span>
         </div>
 
         <div class="space-y-3">
@@ -255,6 +261,7 @@
       gift3: "20",
       gift4: "25",
       adDirectUrl: "https://www.highrevenueformat.com/911e111c729b4e0f7907e026e0073b1d/invoke.js",
+      weekDate: "24-08-2026 မှ 28-08-2026 ထိ",
       pat: "9",
       brake: "1 / 6",
       special: "06 • 97 • 65 • 82",
@@ -273,6 +280,7 @@
       document.getElementById("gift-3").innerText = myLottoData.gift3;
       document.getElementById("gift-4").innerText = myLottoData.gift4;
 
+      document.getElementById("cfg-date").innerText = myLottoData.weekDate;
       document.getElementById("cfg-pat").innerText = myLottoData.pat;
       document.getElementById("cfg-brake").innerText = myLottoData.brake;
       document.getElementById("cfg-special").innerText = myLottoData.special;
