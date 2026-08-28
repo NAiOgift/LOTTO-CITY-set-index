@@ -22,7 +22,7 @@
 
   <div class="w-full max-w-md flex flex-col gap-4">
     
-    <header class="flex items-center justify-between py-3 px-1">
+    <header class="flex items-center justify-between py-2 px-1">
       <div>
         <div class="flex items-center gap-2">
           <div class="w-3 h-3 rounded-full bg-cyan-400"></div>
@@ -36,160 +36,129 @@
       </div>
     </header>
 
-    <!-- Main Live Result Card -->
-    <div class="glass-card rounded-3xl p-6 shadow-2xl relative overflow-hidden">
-      <div class="flex justify-between items-center text-xs text-slate-400 font-medium">
-        <span>CURRENT RESULT</span>
-        <span id="live-time" class="bg-slate-800/80 px-2.5 py-1 rounded-md text-slate-300">Syncing...</span>
-      </div>
-
-      <div class="py-5 text-center">
-        <div id="live-twod" class="text-8xl font-black text-cyan-400 glow-cyan tracking-tight inline-block transition-all duration-300">--</div>
-      </div>
-
-      <!-- SET INDEX & VALUE -->
-      <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800/60">
-        <div class="bg-slate-900/60 border border-slate-800/50 p-3 rounded-2xl">
-          <span class="text-[11px] font-bold text-slate-400 tracking-wider block mb-1">SET INDEX</span>
-          <span id="live-set" class="text-base font-bold text-slate-100 tracking-tight transition-all duration-300">--</span>
+    <div id="page-1" class="flex flex-col gap-4">
+      <div class="glass-card rounded-3xl p-6 shadow-2xl relative overflow-hidden">
+        <div class="flex justify-between items-center text-xs text-slate-400 font-medium">
+          <span>CURRENT RESULT</span>
+          <span id="live-time" class="bg-slate-800/80 px-2.5 py-1 rounded-md text-slate-300">Syncing...</span>
         </div>
-        <div class="bg-slate-900/60 border border-slate-800/50 p-3 rounded-2xl">
-          <span class="text-[11px] font-bold text-slate-400 tracking-wider block mb-1">VALUE</span>
-          <span id="live-value" class="text-base font-bold text-slate-100 tracking-tight transition-all duration-300">--</span>
-        </div>
-      </div>
 
-      <!-- 12:01 PM & 4:30 PM Live Results Display -->
-      <div class="grid grid-cols-2 gap-3 mt-3 pt-3 border-t border-slate-800/40">
-        <div class="bg-slate-900/90 border border-amber-500/30 p-3 rounded-2xl text-center">
-          <span class="text-[11px] font-bold text-amber-400 block mb-0.5">12:01 PM (မနက်)</span>
-          <span id="res-1201" class="text-2xl font-black text-cyan-400">--</span>
+        <div class="py-5 text-center">
+          <div id="live-twod" class="text-8xl font-black text-cyan-400 glow-cyan tracking-tight inline-block transition-all duration-300">--</div>
         </div>
-        <div class="bg-slate-900/90 border border-amber-500/30 p-3 rounded-2xl text-center">
-          <span class="text-[11px] font-bold text-amber-400 block mb-0.5">04:30 PM (ညနေ)</span>
-          <span id="res-1630" class="text-2xl font-black text-cyan-400">--</span>
+
+        <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800/60">
+          <div class="bg-slate-900/60 border border-slate-800/50 p-3 rounded-2xl">
+            <span class="text-[11px] font-bold text-slate-400 tracking-wider block mb-1">SET INDEX</span>
+            <span id="live-set" class="text-base font-bold text-slate-100 tracking-tight transition-all duration-300">--</span>
+          </div>
+          <div class="bg-slate-900/60 border border-slate-800/50 p-3 rounded-2xl">
+            <span class="text-[11px] font-bold text-slate-400 tracking-wider block mb-1">VALUE</span>
+            <span id="live-value" class="text-base font-bold text-slate-100 tracking-tight transition-all duration-300">--</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- 🎁 Reward Post / Gift Section -->
-    <div class="glass-card rounded-3xl p-5 shadow-xl border border-amber-500/30 text-center">
-      <div class="flex items-center justify-center gap-1.5 mb-2">
-        <span class="text-amber-400 text-base">🎁</span>
-        <h2 class="text-sm font-bold text-amber-400 tracking-wide">တပတ်စာ အထူးမွေးတစ်ကွက်ကောင်း</h2>
+      <div class="glass-card rounded-3xl p-5 shadow-xl">
+        <h2 class="text-sm font-bold text-slate-200 tracking-wide mb-3 flex items-center gap-2">
+          <span class="text-cyan-400">⚡</span> နေ့စဉ် ထွက်ဂဏန်းများ
+        </h2>
+        
+        <div class="grid grid-cols-2 gap-2.5">
+          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center">
+            <span class="text-[10px] text-amber-400 font-bold block mb-1">09:30 AM (မနက်)</span>
+            <span id="cfg-m930" class="text-2xl font-black text-cyan-400">--</span>
+          </div>
+          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center">
+            <span class="text-[10px] text-amber-400 font-bold block mb-1">12:01 PM (မနက်)</span>
+            <span id="res-1201" class="text-2xl font-black text-cyan-400">--</span>
+          </div>
+          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center">
+            <span class="text-[10px] text-amber-400 font-bold block mb-1">02:00 PM (ညနေ)</span>
+            <span id="cfg-m200" class="text-2xl font-black text-cyan-400">--</span>
+          </div>
+          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center">
+            <span class="text-[10px] text-amber-400 font-bold block mb-1">04:30 PM (ညနေ)</span>
+            <span id="res-1630" class="text-2xl font-black text-cyan-400">--</span>
+          </div>
+        </div>
       </div>
 
-      <div id="locked-content" class="py-2">
-        <p class="text-xs text-slate-400 mb-3">ကြော်ငြာ နှိပ်ကြည့်ပြီးပါက လက်ဆောင်ဂဏန်း ပွင့်သွားမည်</p>
-        <button onclick="unlockGift()" class="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-xs px-5 py-2.5 rounded-xl shadow-lg hover:opacity-90 transition active:scale-95">
-          🔓 ကြော်ငြာကြည့်၍ လက်ဆောင်ယူမည်
+      <div class="glass-card rounded-3xl p-5 shadow-xl border border-amber-500/30 text-center">
+        <div class="flex items-center justify-center gap-1.5 mb-2">
+          <span class="text-amber-400 text-base">🎁</span>
+          <h2 class="text-sm font-bold text-amber-400 tracking-wide">နေ့တိုက် အထူး လက်ဆောင်ဂဏန်း</h2>
+        </div>
+
+        <div id="locked-content" class="py-2">
+          <p class="text-xs text-slate-400 mb-3">အောက်ပါ ခလုတ်ကို နှိပ်၍ လက်ဆောင်ဂဏန်း ကြည့်နိုင်ပါသည်</p>
+          <button onclick="unlockGift()" class="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-xs px-5 py-2.5 rounded-xl shadow-lg hover:opacity-90 transition active:scale-95">
+            🔓 လက်ဆောင်ဂဏန်း ကြည့်မည်
+          </button>
+        </div>
+
+        <div id="unlocked-content" class="hidden py-2 animate-fade-in">
+          <div class="text-xs text-slate-400 mb-1">ဒီနေ့အတွက် အထူးဂဏန်း</div>
+          <div class="text-3xl font-black text-cyan-400 tracking-wider my-1">86 - 68</div>
+          <span class="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-0.5 rounded-full font-semibold">VIP UNLOCKED ✓</span>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-3xl p-4 shadow-xl border border-cyan-500/30 text-center">
+        <div class="text-xs text-slate-300 font-semibold mb-2.5">တစ်ပတ်စာ မွေးဂဏန်းများနှင့် အထူးအခွေများ ကြည့်ရန်</div>
+        <button onclick="switchTab(2)" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-extrabold text-sm py-3 rounded-2xl shadow-lg hover:opacity-90 transition active:scale-95 flex items-center justify-center gap-2">
+          <span>✦ တစ်ပတ်စာ လက်ဆောင် ကြည့်ရန် နှိပ်ပါ</span>
+          <span>→</span>
         </button>
       </div>
-
-      <div id="unlocked-content" class="hidden py-2 animate-fade-in">
-        <div class="text-xs text-slate-400 mb-1">တပတ်စာအထူး‌‌မွေးတစ်ကွက်ကောင်းdiv>
-        <div class="text-3xl font-black text-cyan-400 tracking-wider my-1">86 - 68</div>
-        <span class="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-0.5 rounded-full font-semibold">VIP UNLOCKED ✓</span>
-      </div>
     </div>
 
-    <!-- VIP မွေးဂဏန်း Section -->
-    <div class="glass-card rounded-3xl p-5 shadow-xl border border-cyan-500/20">
-      <div class="flex items-center justify-between mb-3">
-        <div class="flex items-center gap-2">
-          <span class="text-amber-400 text-sm">✦</span>
-          <h2 class="text-sm font-bold text-slate-200 tracking-wide">တစ်ပတ်စာ အထူးမွေးဂဏန်း</h2>
+    <div id="page-2" class="hidden flex-col gap-4">
+      <div class="glass-card rounded-3xl p-5 shadow-xl border border-cyan-500/20">
+        <div class="flex items-center justify-between mb-4 border-b border-slate-800/80 pb-3">
+          <div class="flex items-center gap-2">
+            <span class="text-amber-400 text-sm">✦</span>
+            <h2 class="text-sm font-bold text-slate-200 tracking-wide">တစ်ပတ်စာ VIP မွေးဂဏန်းများ</h2>
+          </div>
+          <span class="text-[10px] bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2.5 py-0.5 rounded-full font-semibold">VIP TIPS</span>
         </div>
-        <span class="text-[10px] bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2 py-0.5 rounded-full font-semibold">VIP TIPS</span>
+
+        <div class="space-y-3">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-slate-900/80 border border-slate-800/60 p-3.5 rounded-2xl text-center">
+              <div class="text-xs text-slate-400 mb-1">မွေးပတ်သီး</div>
+              <div id="cfg-pat" class="text-2xl font-black text-cyan-400">9</div>
+            </div>
+            <div class="bg-slate-900/80 border border-slate-800/60 p-3.5 rounded-2xl text-center">
+              <div class="text-xs text-slate-400 mb-1">မွေးဘရိတ်</div>
+              <div id="cfg-brake" class="text-2xl font-black text-amber-400">1 / 6</div>
+            </div>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-800/60 p-4 rounded-2xl">
+            <div class="text-xs text-slate-400 mb-2 text-center">အထူးမွေး (၄) ကွက်</div>
+            <div id="cfg-special" class="text-lg font-bold text-slate-100 text-center tracking-widest text-cyan-300">
+              06 • 97 • 65 • 82
+            </div>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-800/60 p-4 rounded-2xl">
+            <div class="text-xs text-slate-400 mb-2 text-center">အပူးပါ (၄) လုံးအခွေ</div>
+            <div id="cfg-akway" class="text-lg font-bold text-amber-400 text-center tracking-widest">
+              1 • 6 • 8 • 9
+            </div>
+          </div>
+        </div>
+
+        <p class="text-[10px] text-slate-500 text-center mt-4 mb-2">တနင်္လာ မှ သောကြာ အထိ ထွက်သည်အထိ လိုက်ရန် မွေးဂဏန်းများ</p>
       </div>
 
-      <div class="grid grid-cols-3 gap-2 text-center py-2">
-        <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
-          <div class="text-[10px] text-slate-400 mb-1">မွေးပတ်သီး</div>
-          <div id="cfg-pat" class="text-xl font-extrabold text-cyan-400">--</div>
-        </div>
-        <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
-          <div class="text-[10px] text-slate-400 mb-1">သောကြာတစ်ရက်စာဘရိတ်</div>
-          <div id="cfg-main" class="text-xl font-extrabold text-amber-400">--</div>
-        </div>
-        <div class="bg-slate-900/80 border border-slate-800/60 p-2.5 rounded-xl">
-          <div class="text-[10px] text-slate-400 mb-1">VIPမွေးဂဏန်း</div>
-          <div id="cfg-sub" class="text-sm font-bold text-slate-200 mt-1">--</div>
-        </div>
-      </div>
-      <p class="text-[10px] text-slate-500 text-center mt-2">တနင်္လာ မှ သောကြာ အထိ ထွက်သည်အထိ လိုက်ရန် မွေးဂဏန်းများ</p>
+      <button onclick="switchTab(1)" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs py-3 rounded-2xl border border-slate-700 transition active:scale-95 flex items-center justify-center gap-2">
+        <span>← 🏠 ပင်မ စာမျက်နှာသို့ ပြန်သွားမည်</span>
+      </button>
     </div>
 
-    <!-- Adsterra 300x250 Native Banner Ads -->
-    <div class="w-full flex justify-center items-center glass-card p-3 rounded-3xl overflow-hidden min-h-[260px]">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : '911e111c729b4e0f7907e026e0073b1d',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
-        };
-      </script>
-      <script type="text/javascript" src="https://www.highrevenueformat.com/911e111c729b4e0f7907e026e0073b1d/invoke.js"></script>
-    </div>
-
-    <!-- Modern & Internet 2D Section -->
-    <div class="glass-card rounded-3xl p-5 shadow-xl">
-      <div class="flex items-center justify-between mb-3">
-        <div class="flex items-center gap-2">
-          <span class="text-cyan-400 font-bold">⚡</span>
-          <h2 class="text-sm font-bold text-slate-200 tracking-wide">Modern & Internet ထွက်ဂဏန်းများ</h2>
-        </div>
-        <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded-full">9:30 / 2:00</span>
-      </div>
-
-      <div class="grid grid-cols-2 gap-3">
-        <div class="bg-slate-900/80 border border-slate-800/60 p-3.5 rounded-2xl">
-          <div class="flex justify-between items-center mb-2 pb-1 border-b border-slate-800/50">
-            <span class="text-xs font-bold text-amber-400">09:30 AM</span>
-            <span class="text-[10px] text-slate-500">မနက်ပိုင်း</span>
-          </div>
-          <div class="flex justify-between items-center py-1">
-            <span class="text-xs text-slate-400">Modern:</span>
-            <span id="cfg-m930" class="text-base font-bold text-cyan-400">--</span>
-          </div>
-          <div class="flex justify-between items-center py-1">
-            <span class="text-xs text-slate-400">Internet:</span>
-            <span id="cfg-i930" class="text-base font-bold text-cyan-400">--</span>
-          </div>
-        </div>
-
-        <div class="bg-slate-900/80 border border-slate-800/60 p-3.5 rounded-2xl">
-          <div class="flex justify-between items-center mb-2 pb-1 border-b border-slate-800/50">
-            <span class="text-xs font-bold text-amber-400">02:00 PM</span>
-            <span class="text-[10px] text-slate-500">ညနေပိုင်း</span>
-          </div>
-          <div class="flex justify-between items-center py-1">
-            <span class="text-xs text-slate-400">Modern:</span>
-            <span id="cfg-m200" class="text-base font-bold text-cyan-400">--</span>
-          </div>
-          <div class="flex justify-between items-center py-1">
-            <span class="text-xs text-slate-400">Internet:</span>
-            <span id="cfg-i200" class="text-base font-bold text-cyan-400">--</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Official SET History Section -->
-    <div class="glass-card rounded-3xl p-5 shadow-xl">
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="text-sm font-bold text-slate-200 tracking-wide">ယနေ့ တရားဝင်ထွက်ဂဏန်းမှတ်တမ်း</h2>
-        <span class="text-[11px] text-slate-400">SET Sessions</span>
-      </div>
-      <div id="history-list" class="space-y-2.5">
-        <div class="text-center py-4 text-xs text-slate-500">ဒေတာများ ရယူနေသည်...</div>
-      </div>
-    </div>
-
-    <!-- Official Telegram Channel Button -->
-    <a href="https://t.me/lottocity_mm" target="_blank" rel="noopener noreferrer" class="w-full glass-card hover:bg-slate-800/60 transition duration-200 border-slate-800 rounded-2xl p-4 flex items-center justify-between group">
+    <a href="https://t.me/lottocity_mm" target="_blank" rel="noopener noreferrer" class="w-full glass-card hover:bg-slate-800/60 transition duration-200 border-slate-800 rounded-2xl p-4 flex items-center justify-between group mt-1">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 font-bold text-lg">✈</div>
         <div class="text-left">
@@ -207,31 +176,43 @@
   </footer>
 
   <script>
+    function switchTab(tabNum) {
+      const page1 = document.getElementById('page-1');
+      const page2 = document.getElementById('page-2');
+
+      if (tabNum === 1) {
+        page1.classList.remove('hidden');
+        page1.classList.add('flex');
+        page2.classList.add('hidden');
+        page2.classList.remove('flex');
+      } else {
+        page2.classList.remove('hidden');
+        page2.classList.add('flex');
+        page1.classList.add('hidden');
+        page1.classList.remove('flex');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     const myLottoData = {
-      pat: "0",
-      main: "9.7",
-      sub: "06, 97, 65",
-      m930: "78",
-      i930: "93",
-      m200: "72",
-      i200: "20"
+      m930: "61",
+      m200: "--",
+      pat: "9",
+      brake: "1 / 6",
+      special: "06 • 97 • 65 • 82",
+      akway: "1 • 6 • 8 • 9"
     };
 
     function renderLottoData() {
-      document.getElementById("cfg-pat").innerText = myLottoData.pat;
-      document.getElementById("cfg-main").innerText = myLottoData.main;
-      document.getElementById("cfg-sub").innerText = myLottoData.sub;
       document.getElementById("cfg-m930").innerText = myLottoData.m930;
-      document.getElementById("cfg-i930").innerText = myLottoData.i930;
       document.getElementById("cfg-m200").innerText = myLottoData.m200;
-      document.getElementById("cfg-i200").innerText = myLottoData.i200;
+      document.getElementById("cfg-pat").innerText = myLottoData.pat;
+      document.getElementById("cfg-brake").innerText = myLottoData.brake;
+      document.getElementById("cfg-special").innerText = myLottoData.special;
+      document.getElementById("cfg-akway").innerText = myLottoData.akway;
     }
 
     function unlockGift() {
-      // High-Revenue Adsterra Ads Invoke Link
-      const adUrl = "https://www.highrevenueformat.com/911e111c729b4e0f7907e026e0073b1d/invoke.js";
-      window.open(adUrl, '_blank');
-
       document.getElementById('locked-content').classList.add('hidden');
       document.getElementById('unlocked-content').classList.remove('hidden');
     }
@@ -249,7 +230,6 @@
           time: document.getElementById("live-time"),
           res1201: document.getElementById("res-1201"),
           res1630: document.getElementById("res-1630"),
-          history: document.getElementById("history-list"),
           badge: document.getElementById("status-badge"),
           dot: document.getElementById("status-dot"),
           text: document.getElementById("status-text")
@@ -279,7 +259,6 @@
         }
 
         if (data.result && data.result.length > 0) {
-          ui.history.innerHTML = "";
           data.result.forEach(item => {
             if (item.open_time.includes("12:01")) {
               ui.res1201.innerText = item.twod;
@@ -287,17 +266,6 @@
             if (item.open_time.includes("16:30") || item.open_time.includes("4:30")) {
               ui.res1630.innerText = item.twod;
             }
-
-            const row = document.createElement("div");
-            row.className = "flex justify-between items-center bg-slate-900/80 border border-slate-800/40 px-4 py-3 rounded-xl";
-            row.innerHTML = `
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                <span class="text-xs text-slate-400 font-medium">${item.open_time}</span>
-              </div>
-              <span class="font-bold text-cyan-400 text-lg">${item.twod}</span>
-            `;
-            ui.history.appendChild(row);
           });
         }
       } catch (err) {
@@ -309,9 +277,6 @@
     fetchStockData();
     setInterval(fetchStockData, 3000); 
   </script>
-
-  <!-- Popunder / Direct Adsterra Script -->
-  <script type="text/javascript" src="https://pl31021178.profitableratecpmnetwork.com/3b/71/e7/3b71e7fd9de2da000a9244f2754787b7.js"></script>
 
 </body>
 </html>
