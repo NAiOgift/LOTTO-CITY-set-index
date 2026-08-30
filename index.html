@@ -38,6 +38,7 @@
 
     <!-- PAGE 1: ပင်မ မျက်နှာပြင် -->
     <div id="page-1" class="flex flex-col gap-4">
+      <!-- Main Live Result Card -->
       <div class="glass-card rounded-3xl p-6 shadow-2xl relative overflow-hidden">
         <div class="flex justify-between items-center text-xs text-slate-400 font-medium">
           <span>CURRENT RESULT</span>
@@ -60,13 +61,25 @@
         </div>
       </div>
 
-      <!-- နေ့စဉ် ထွက်ဂဏန်းများ Card -->
+      <!-- နေ့စဉ် ထွက်ဂဏန်းများ Card (တောင်းဆိုထားသော အစီအစဉ်အတိုင်း စီထားသည်) -->
       <div class="glass-card rounded-3xl p-5 shadow-xl">
         <h2 class="text-sm font-bold text-slate-200 tracking-wide mb-3 flex items-center gap-2">
           <span class="text-cyan-400">⚡</span> နေ့စဉ် ထွက်ဂဏန်းများ
         </h2>
         
         <div class="grid grid-cols-2 gap-2.5">
+          <!-- Row 1: 12:01 / 4:30 -->
+          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
+            <span class="text-[10px] text-amber-400 font-bold block mb-1">12:01 PM (မနက်)</span>
+            <span id="res-1201" class="text-2xl font-black text-cyan-400 my-auto">--</span>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
+            <span class="text-[10px] text-amber-400 font-bold block mb-1">04:30 PM (ညနေ)</span>
+            <span id="res-1630" class="text-2xl font-black text-cyan-400 my-auto">--</span>
+          </div>
+
+          <!-- Row 2: 9:30 / 2:00 -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">09:30 AM (မနက်)</span>
             <div class="flex flex-col justify-center gap-1.5 my-auto w-full max-w-[120px] mx-auto text-xs font-bold">
@@ -79,16 +92,6 @@
                 <span id="m930-net" class="text-cyan-400 font-black text-base">61</span>
               </div>
             </div>
-          </div>
-
-          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
-            <span class="text-[10px] text-amber-400 font-bold block mb-1">11:00 AM (မနက်)</span>
-            <span id="res-1100" class="text-2xl font-black text-cyan-400 my-auto">--</span>
-          </div>
-
-          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
-            <span class="text-[10px] text-amber-400 font-bold block mb-1">12:01 PM (မနက်)</span>
-            <span id="res-1201" class="text-2xl font-black text-cyan-400 my-auto">--</span>
           </div>
 
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
@@ -105,14 +108,15 @@
             </div>
           </div>
 
+          <!-- Row 3: 11:00 / 3:00 -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
-            <span class="text-[10px] text-amber-400 font-bold block mb-1">03:00 PM (ညနေ)</span>
-            <span id="res-1500" class="text-2xl font-black text-cyan-400 my-auto">--</span>
+            <span class="text-[10px] text-amber-400 font-bold block mb-1">11:00 AM (မနက်)</span>
+            <span id="res-1100" class="text-2xl font-black text-cyan-400 my-auto">--</span>
           </div>
 
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
-            <span class="text-[10px] text-amber-400 font-bold block mb-1">04:30 PM (ညနေ)</span>
-            <span id="res-1630" class="text-2xl font-black text-cyan-400 my-auto">--</span>
+            <span class="text-[10px] text-amber-400 font-bold block mb-1">03:00 PM (ညနေ)</span>
+            <span id="res-1500" class="text-2xl font-black text-cyan-400 my-auto">--</span>
           </div>
         </div>
       </div>
@@ -243,20 +247,20 @@
     const myLottoData = {
       res1100: "--",
       res1500: "--",
-      m930_mod: "41",
-      m930_net: "61",
+      m930_mod: "--",
+      m930_net: "--",
       m200_mod: "--",
       m200_net: "--",
-      gift1: "70",
-      gift2: "75",
-      gift3: "20",
-      gift4: "25",
-      adDirectUrl: "https://www.google.com", 
-      weekDate: "24-08-2026 မှ 28-08-2026 ထိ",
-      pat: "9",
-      brake: "1 / 6",
-      special: "06 • 97 • 65 • 82",
-      akway: "1 • 6 • 8 • 9"
+      gift1: "54",
+      gift2: "59",
+      gift3: "39",
+      gift4: "39",
+      adDirectUrl: "https://www.google.com",
+      weekDate: "31-08-2026 မှ 04-09-2026 ထိ",
+      pat: "5",
+      brake: "8 / 1",
+      special: "44 • 99 • 47 • 92",
+      akway: "3 • 0 • 8 • 5"
     };
 
     function renderLottoData() {
@@ -283,7 +287,7 @@
           window.open(myLottoData.adDirectUrl, '_blank');
         }
       } catch (e) {
-        console.log("Ad popup blocked, continuing unlock");
+        console.log("Ad popup blocked");
       }
 
       document.getElementById('locked-content').classList.add('hidden');
@@ -348,26 +352,4 @@
             if ((openTime.includes("16:30") || openTime.includes("4:30") || openTime.includes("04:30")) && twodVal !== "--") ui.res1630.innerText = twodVal;
             if (openTime.includes("09:30") || openTime.includes("9:30")) {
               if (item.modern) ui.m930Mod.innerText = item.modern;
-              if (item.internet) ui.m930Net.innerText = item.internet;
-            }
-            if (openTime.includes("14:00") || openTime.includes("2:00") || openTime.includes("02:00")) {
-              if (item.modern) ui.m200Mod.innerText = item.modern;
-              if (item.internet) ui.m200Net.innerText = item.internet;
-            }
-          });
-        }
-      } catch (err) {
-        console.error("API Fetch Error (Fallback Mode Enabled):", err);
-        const textElem = document.getElementById("status-text");
-        const dotElem = document.getElementById("status-dot");
-        if (textElem) textElem.innerText = "OFFLINE";
-        if (dotElem) dotElem.className = "w-1.5 h-1.5 rounded-full bg-rose-500";
-      }
-    }
-
-    renderLottoData();
-    fetchStockData();
-    setInterval(fetchStockData, 3000); 
-  </script>
-</body>
-</html>
+              if
