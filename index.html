@@ -61,27 +61,15 @@
         </div>
       </div>
 
-      <!-- 12:01 / 4:30 & 9:30 / 2:00 Card -->
+      <!-- နေ့စဉ် ထွက်ဂဏန်းများ Card -->
       <div class="glass-card rounded-3xl p-5 shadow-xl">
         <h2 class="text-sm font-bold text-slate-200 tracking-wide mb-3 flex items-center gap-2">
           <span class="text-cyan-400">⚡</span> နေ့စဉ် ထွက်ဂဏန်းများ
         </h2>
         
         <div class="grid grid-cols-2 gap-2.5">
-          <!-- 12:01 PM -->
-          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[110px]">
-            <span class="text-[10px] text-amber-400 font-bold block mb-1">12:01 PM (မနက်)</span>
-            <span id="res-1201" class="text-2xl font-black text-cyan-400 my-auto">--</span>
-          </div>
-
-          <!-- 04:30 PM -->
-          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[110px]">
-            <span class="text-[10px] text-amber-400 font-bold block mb-1">04:30 PM (ညနေ)</span>
-            <span id="res-1630" class="text-2xl font-black text-cyan-400 my-auto">--</span>
-          </div>
-
           <!-- 09:30 AM (MOD & NET) -->
-          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[110px]">
+          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">09:30 AM (မနက်)</span>
             <div class="flex flex-col justify-center gap-1.5 my-auto w-full max-w-[120px] mx-auto text-xs font-bold">
               <div class="flex justify-between items-center w-full px-2">
@@ -95,8 +83,20 @@
             </div>
           </div>
 
+          <!-- 11:00 AM (Auto Sync) -->
+          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
+            <span class="text-[10px] text-amber-400 font-bold block mb-1">11:00 AM (မနက်)</span>
+            <span id="res-1100" class="text-2xl font-black text-cyan-400 my-auto">--</span>
+          </div>
+
+          <!-- 12:01 PM (Auto Sync) -->
+          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
+            <span class="text-[10px] text-amber-400 font-bold block mb-1">12:01 PM (မနက်)</span>
+            <span id="res-1201" class="text-2xl font-black text-cyan-400 my-auto">--</span>
+          </div>
+
           <!-- 02:00 PM (MOD & NET) -->
-          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[110px]">
+          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">02:00 PM (ညနေ)</span>
             <div class="flex flex-col justify-center gap-1.5 my-auto w-full max-w-[120px] mx-auto text-xs font-bold">
               <div class="flex justify-between items-center w-full px-2">
@@ -108,6 +108,18 @@
                 <span id="m200-net" class="text-cyan-400 font-black text-base">--</span>
               </div>
             </div>
+          </div>
+
+          <!-- 03:00 PM (Auto Sync) -->
+          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
+            <span class="text-[10px] text-amber-400 font-bold block mb-1">03:00 PM (ညနေ)</span>
+            <span id="res-1500" class="text-2xl font-black text-cyan-400 my-auto">--</span>
+          </div>
+
+          <!-- 04:30 PM (Auto Sync) -->
+          <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
+            <span class="text-[10px] text-amber-400 font-bold block mb-1">04:30 PM (ညနေ)</span>
+            <span id="res-1630" class="text-2xl font-black text-cyan-400 my-auto">--</span>
           </div>
         </div>
       </div>
@@ -127,8 +139,7 @@
         </div>
 
         <div id="unlocked-content" class="hidden py-2 animate-fade-in">
-          <!-- Native Banner Ads Box -->
-          <div class="w-full flex justify-center items-center my-2 rounded-2xl overflow-hidden min-h-[250px] bg-slate-900/50">
+          <div class="w-full flex justify-center items-center my-2 rounded-2xl overflow-hidden min-h-[250px] bg-slate-900/50 border border-slate-800">
             <script type="text/javascript">
               atOptions = {
                 'key' : '911e111c729b4e0f7907e026e0073b1d',
@@ -173,7 +184,6 @@
           <span class="text-[10px] bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2.5 py-0.5 rounded-full font-semibold">VIP TIPS</span>
         </div>
 
-        <!-- Date Range Display Box -->
         <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-xl py-2 px-3 mb-4 text-center">
           <span class="text-[11px] text-slate-300 font-medium">ရက်စွဲ - </span>
           <span id="cfg-date" class="text-xs font-bold text-cyan-400 tracking-wide">24-08-2026 မှ 28-08-2026 ထိ</span>
@@ -252,23 +262,28 @@
     }
 
     const myLottoData = {
+      res1100: "--",
+      res1500: "--",
       m930_mod: "--",
       m930_net: "--",
       m200_mod: "--",
       m200_net: "--",
-      gift1: "70",
-      gift2: "75",
-      gift3: "20",
-      gift4: "25",
+      gift1: "54",
+      gift2: "59",
+      gift3: "34",
+      gift4: "39",
       adDirectUrl: "https://www.highrevenueformat.com/911e111c729b4e0f7907e026e0073b1d/invoke.js",
-      weekDate: "31-08-2026 မှ 4-9-2026 ထိ",
+      weekDate: "31-08-2026 မှ 4-09-2026 ထိ",
       pat: "5",
-      brake: "1 / 8",
-      special: "44 • 99 • 47 • 92",
-      akway: "3 • 0 • 8 • 5"
+      brake: "8 / 1",
+      special: "44 • 99 • 74 • 92",
+      akway: "5 • 0 • 8 • 3"
     };
 
     function renderLottoData() {
+      document.getElementById("res-1100").innerText = myLottoData.res1100;
+      document.getElementById("res-1500").innerText = myLottoData.res1500;
+
       document.getElementById("m930-mod").innerText = myLottoData.m930_mod;
       document.getElementById("m930-net").innerText = myLottoData.m930_net;
 
@@ -307,7 +322,9 @@
           set: document.getElementById("live-set"),
           value: document.getElementById("live-value"),
           time: document.getElementById("live-time"),
+          res1100: document.getElementById("res-1100"),
           res1201: document.getElementById("res-1201"),
+          res1500: document.getElementById("res-1500"),
           res1630: document.getElementById("res-1630"),
           m930Mod: document.getElementById("m930-mod"),
           m930Net: document.getElementById("m930-net"),
@@ -341,36 +358,24 @@
           ui.time.innerText = timeStr;
         }
 
-        if (data.result && data.result.length > 0) {
+        if (data.result && Array.isArray(data.result)) {
           data.result.forEach(item => {
-            if (item.open_time.includes("12:01")) {
-              if (item.twod) ui.res1201.innerText = item.twod;
-            }
-            if (item.open_time.includes("16:30") || item.open_time.includes("4:30")) {
-              if (item.twod) ui.res1630.innerText = item.twod;
-            }
-            if (item.open_time.includes("09:30") || item.open_time.includes("9:30")) {
-              if (item.modern) ui.m930Mod.innerText = item.modern;
-              if (item.internet) ui.m930Net.innerText = item.internet;
-            }
-            if (item.open_time.includes("14:00") || item.open_time.includes("2:00")) {
-              if (item.modern) ui.m200Mod.innerText = item.modern;
-              if (item.internet) ui.m200Net.innerText = item.internet;
-            }
-          });
-        }
-      } catch (err) {
-        console.error("API Fetch error:", err);
-      }
-    }
+            const openTime = (item.open_time || "").trim();
+            const twodVal = item.twod || "--";
 
-    renderLottoData();
-    fetchStockData();
-    setInterval(fetchStockData, 3000); 
-  </script>
+            // 11:00 AM Auto Sync
+            if (openTime.includes("11:00")) {
+              if (twodVal !== "--") ui.res1100.innerText = twodVal;
+            }
 
-  <!-- Popunder Ads Script -->
-  <script type="text/javascript" src="https://pl31021178.profitableratecpmnetwork.com/3b/71/e7/3b71e7fd9de2da000a9244f2754787b7.js"></script>
+            // 12:01 PM Auto Sync
+            if (openTime.includes("12:01")) {
+              if (twodVal !== "--") ui.res1201.innerText = twodVal;
+            }
 
-</body>
-</html>
+            // 03:00 PM Auto Sync (15:00, 3:00, 03:00)
+            if (openTime.includes("15:00") || openTime.includes("3:00") || openTime.includes("03:00")) {
+              if (twodVal !== "--") ui.res1500.innerText = twodVal;
+            }
+
+            // 04:30 PM
