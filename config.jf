@@ -1,16 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-// နေ့စဉ် ဤနေရာရှိ ဂဏန်းများကိုသာ အလွယ်တကူ ပြောင်းလဲပါ
-const lottoConfig = {
-  // တစ်ပတ်စာ မွေးဂဏန်းများ
-  pat: "8",
-  main: "88",
-  sub: "60, 97, 92",
+        body {
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
 
-  // 09:30 AM (မနက်ပိုင်း)
-  m930: "92",
-  i930: "40",
+        .calculator {
+            background-color: #22252d;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+            width: 360px;
+        }
 
-  // 02:00 PM (ညနေပိုင်း)
-  m200: "33",
-  i200: "88"
-};
+        #display {
+            width: 100%;
+            height: 70px;
+            background-color: #292d36;
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 2rem;
+            text-align: right;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            height: 48px;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            background-color: #272b33;
+            color: #ffffff;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+            background-color: #333742;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .operator {
+            color: #eb6666;
+        }
+
+        .func {
+            color: #26e7a6;
+        }
+
+        .equal {
+            background-color: #26e7a6;
+            color: #22252d;
+            grid-column: span 2;
+        }
+
+        .equal:hover {
+            background-color: #20ca90;
+        }
+
+        .clear {
+            background-color: #eb6666;
+            color: #ffffff;
+        }
+
+        .clear:hover {
+            background-color: #d85555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" readonly placeholder="0">
+    <div class="buttons">
+        <!-- Row 1 -->
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button class="func" onclick="deleteLast()">DEL</button>
+        <button class="func" onclick="appendInput('(')">(</button>
+        <button class="func" onclick="appendInput(')')">)</button>
+        <button class="operator" onclick="appendInput('/')">÷</button>
+
+        <!-- Row 2 -->
+        <button class="func" onclick="calcFunc('sin')">sin</button>
+        <button class="func" onclick="calcFunc('cos')">cos</button>
+        <button class="func" onclick="calcFunc('tan')">tan</button>
+        <button class="func" onclick="calcFunc('log')">log</button>
+        <button class="operator" onclick="appendInput('*')">×</button>
+
+        <!-- Row 3 -->
+        <button class="func" onclick="calcFunc('sqrt')">√</button>
+        <button onclick="appendInput('7')">7</button>
+        <button onclick="appendInput('8')">8</button>
+        <button onclick="appendInput('9')">9</button>
+        <button class="operator" onclick="appendInput('-')">-</button>
+
+        <!-- Row 4 -->
+        <button class="func" onclick="calcFunc('pow')">x²</button>
+        <button onclick="appendInput('4')">4</button>
+        <button onclick="appendInput('5')">5</button>
+        <button onclick="appendInput('6')">6</button>
+        <button class="operator" onclick="appendInput('+')">+</button>
+
+        <!-- Row 5 -->
+        <button class="func" onclick="appendInput('Math.PI')">π</button>
+        <button onclick="appendInput('1')">1</button>
+        <button onclick="appendInput('2')">2</button>
+        <button onclick="appendInput('3')">3</button>
+        <button class="func" onclick="appendInput('Math.E')">e</button>
+
+        <!-- Row 6 -->
+        <button onclick="appendInput('0')">0</button>
+        <button onclick="appendInput('.')">.</button>
+        <button class="equal" onclick="calculate()">=</button>
+    </div>
+</div>
+
+<script>
+    const display = document.getElementById('display');
+
+    function appendInput(val) {
+        if (display.value === '0' || display.value === 'Error') {
+            display.value = val;
+        } else {
+            display.value += val;
+        }
+    }
+
+    function clearDisplay() {
+        display.value = '';
+    }
+
+    function deleteLast() {
+        display.value = display.value.slice(0, -1);
+    }
+
+    function calcFunc(func) {
+        try {
+            let val = parseFloat(eval(display.value));
+            if (isNaN(val)) return;
+
+            switch(func) {
+                case 'sin':
+                    display.value = Math.sin(val * Math.PI / 180); // Radian to Degree conversion
+                    break;
+                case 'cos':
+                    display.value = Math.cos(val * Math.PI / 180);
+                    break;
+                case 'tan':
+                    display.value = Math.tan(val * Math.PI / 180);
+                    break;
+                case 'log':
+                    display.value = Math.log10(val);
+                    break;
+                case 'sqrt':
+                    display.value = Math.sqrt(val);
+                    break;
+                case 'pow':
+                    display.value = Math.pow(val, 2);
+                    break;
+            }
+        } catch (e) {
+            display.value = 'Error';
+        }
+    }
+
+    function calculate() {
+        try {
+            // Evaluates math expressions securely for standard operations
+            display.value = eval(display.value);
+        } catch (e) {
+            display.value = 'Error';
+        }
+    }
+</script>
+
+</body>
+</html>
+
