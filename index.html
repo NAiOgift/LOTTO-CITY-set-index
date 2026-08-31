@@ -243,20 +243,20 @@
     const myLottoData = {
       res1100: "--",
       res1500: "--",
-      m930_mod: "40",
-      m930_net: "33",
+      m930_mod: "41",
+      m930_net: "61",
       m200_mod: "--",
       m200_net: "--",
-      gift1: "54",
-      gift2: "59",
-      gift3: "34",
-      gift4: "39",
+      gift1: "70",
+      gift2: "75",
+      gift3: "20",
+      gift4: "25",
       adDirectUrl: "https://www.google.com",
-      weekDate: "31-08-2026 မှ 04-09-2026 ထိ",
-      pat: "5",
-      brake: "8 / 1",
-      special: "44 • 99 • 47 • 92",
-      akway: "3 • 0 • 8 • 5"
+      weekDate: "24-08-2026 မှ 28-08-2026 ထိ",
+      pat: "9",
+      brake: "1 / 6",
+      special: "06 • 97 • 65 • 82",
+      akway: "1 • 6 • 8 • 9"
     };
 
     function renderLottoData() {
@@ -291,8 +291,9 @@
     }
 
     async function fetchStockData() {
+      // CORS Proxy ကို အသုံးပြုထားသောကြောင့် ဘရောက်ဆာအများစုတွင် ငြင်းပယ်ခြင်းမခံရဘဲ API တိုက်ရိုက် အလုပ်လုပ်မည် ဖြစ်သည်။
       const targetApi = "https://api.thaistock2d.com/live";
-      const proxyUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent(targetApi) + "&cacheBust=" + Date.now();
+      const proxyUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent(targetApi);
 
       try {
         const res = await fetch(proxyUrl);
@@ -308,6 +309,10 @@
           res1201: document.getElementById("res-1201"),
           res1500: document.getElementById("res-1500"),
           res1630: document.getElementById("res-1630"),
+          m930Mod: document.getElementById("m930-mod"),
+          m930Net: document.getElementById("m930-net"),
+          m200Mod: document.getElementById("m200-mod"),
+          m200Net: document.getElementById("m200-net"),
           badge: document.getElementById("status-badge"),
           dot: document.getElementById("status-dot"),
           text: document.getElementById("status-text")
@@ -317,20 +322,17 @@
           const rawTime = data.live.time || "";
           const timeStr = rawTime.length >= 8 ? rawTime.substring(rawTime.length - 8) : rawTime;
           const timeOnly = timeStr.trim();
-          
           const isMorningClosed = timeOnly >= "12:01:00" && timeOnly < "14:00:00";
           const isEveningClosed = timeOnly >= "16:30:00" || timeOnly < "09:30:00";
 
-          if (ui.badge && ui.dot && ui.text) {
-            if (isMorningClosed || isEveningClosed) {
-              ui.badge.className = "flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold";
-              ui.dot.className = "w-1.5 h-1.5 rounded-full bg-amber-400";
-              ui.text.innerText = isMorningClosed ? "MORNING CLOSED" : "MARKET CLOSED";
-            } else {
-              ui.badge.className = "flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold";
-              ui.dot.className = "w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-fast";
-              ui.text.innerText = "REAL-TIME (3S)";
-            }
+          if (isMorningClosed || isEveningClosed) {
+            ui.badge.className = "flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold";
+            ui.dot.className = "w-1.5 h-1.5 rounded-full bg-amber-400";
+            ui.text.innerText = isMorningClosed ? "MORNING CLOSED" : "MARKET CLOSED";
+          } else {
+            ui.badge.className = "flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold";
+            ui.dot.className = "w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-fast";
+            ui.text.innerText = "REAL-TIME (3S)";
           }
 
           if (ui.twod) ui.twod.innerText = data.live.twod || "--";
@@ -344,23 +346,33 @@
             const openTime = (item.open_time || "").trim();
             const twodVal = item.twod || "--";
 
-            if (openTime.includes("11:00") && twodVal !== "--" && ui.res1100) ui.res1100.innerText = twodVal;
-            if (openTime.includes("12:01") && twodVal !== "--" && ui.res1201) ui.res1201.innerText = twodVal;
-            if ((openTime.includes("15:00") || openTime.includes("3:00")) && twodVal !== "--" && ui.res1500) ui.res1500.innerText = twodVal;
-            if ((openTime.includes("16:30") || openTime.includes("4:30")) && twodVal !== "--" && ui.res1630) ui.res1630.innerText = twodVal;
+            if (openTime.includes("11:00") && twodVal !== "--") ui.res1100.innerText = twodVal;
+            if (openTime.includes("12:01") && twodVal !== "--") ui.res1201.innerText = twodVal;
+            if ((openTime.includes("15:00") || openTime.includes("3:00") || openTime.includes("03:00")) && twodVal !== "--") ui.res1500.innerText = twodVal;
+            if ((openTime.includes("16:30") || openTime.includes("4:30") || openTime.includes("04:30")) && twodVal !== "--") ui.res1630.innerText = twodVal;
+            
+            if (openTime.includes("09:30") || openTime.includes("9:30")) {
+              if (item.modern && item.modern !== "--") ui.m930Mod.innerText = item.modern;
+              if (item.internet && item.internet !== "--") ui.m930Net.innerText = item.internet;
+            }
+            if (openTime.includes("14:00") || openTime.includes("2:00") || openTime.includes("02:00")) {
+              if (item.modern && item.modern !== "--") ui.m200Mod.innerText = item.modern;
+              if (item.internet && item.internet !== "--") ui.m200Net.innerText = item.internet;
+            }
           });
         }
       } catch (err) {
-        console.error("Fetch Error:", err);
+        console.error("API Fetch Error:", err);
+        const textElem = document.getElementById("status-text");
+        const dotElem = document.getElementById("status-dot");
+        if (textElem) textElem.innerText = "OFFLINE";
+        if (dotElem) dotElem.className = "w-1.5 h-1.5 rounded-full bg-rose-500";
       }
     }
 
-    // စတင်ပွင့်ချိန်တွင် Static Data များနှင့် API Sync ကို စတင်မည်
     renderLottoData();
     fetchStockData();
-
-    // ၃ စက္ကန့်လျှင် တစ်ကြိမ် အလိုအလျောက် Real-time Auto-Update ပြုလုပ်မည်
-    setInterval(fetchStockData, 3000);
+    setInterval(fetchStockData, 3000); 
   </script>
 </body>
 </html>
