@@ -298,7 +298,6 @@
       if (unlocked) unlocked.classList.remove('hidden');
     }
 
-    // Proxy Endpoints List (Fallback System)
     const targetApi = "https://api.thaistock2d.com/live";
     const proxyUrls = [
       "https://api.allorigins.win/raw?url=" + encodeURIComponent(targetApi),
@@ -309,16 +308,15 @@
     async function fetchStockData() {
       let data = null;
 
-      // တံခါးတစ်ခု ပိတ်ထားရင် နောက်တစ်ခုကနေ အလိုအလျောက် ခေါ်ယူမည်
       for (let url of proxyUrls) {
         try {
           const res = await fetch(url);
           if (res.ok) {
             data = await res.json();
-            if (data) break; // Data ရတာနဲ့ Loop ကို ရပ်မည်
+            if (data) break;
           }
         } catch (e) {
-          // တခြား Proxy အသုံးပြုရန် ဆက်သွားမည်
+          // တခြား Proxy ကို ဆက်လက် ကြိုးစားမည်
         }
       }
 
@@ -347,7 +345,6 @@
       }
 
       try {
-        // Live Data Update
         if (data.live) {
           const rawTime = String(data.live.time || "");
           const timeStr = rawTime.length >= 8 ? rawTime.substring(rawTime.length - 8) : rawTime;
@@ -374,7 +371,6 @@
           if (ui.time) ui.time.innerText = timeStr || "Syncing...";
         }
 
-        // Result Array Update
         if (Array.isArray(data.result)) {
           data.result.forEach(item => {
             if (!item) return;
@@ -387,4 +383,26 @@
             if ((openTime.includes("16:30") || openTime.includes("4:30") || openTime.includes("04:30")) && twodVal !== "--" && ui.res1630) ui.res1630.innerText = twodVal;
             
             if (openTime.includes("09:30") || openTime.includes("9:30")) {
+              if (item.modern && ui.m930Mod) ui.m930Mod.innerText = item.modern;
+              if (item.internet && ui.m930Net) ui.m930Net.innerText = item.internet;
+            }
+            if (openTime.includes("14:00") || openTime.includes("2:00") || openTime.includes("02:00")) {
+              if (item.modern && ui.m200Mod) ui.m200Mod.innerText = item.modern;
+              if (item.internet && ui.m200Net) ui.m200Net.innerText = item.internet;
+            }
+          });
+        }
+      } catch (e) {
+        console.error("Data parse error:", e);
+      }
+    }
 
+    // စာမျက်နှာ စဖွင့်သည်နှင့် သတ်မှတ်ထားသော Data များကို ရေးဆွဲရန်
+    document.addEventListener("DOMContentLoaded", () => {
+      renderLottoData();
+      fetchStockData();
+      setInterval(fetchStockData, 3000); // ၃ စက္ကန့်လျှင် တစ်ကြိမ် API ခေါ်မည်
+    });
+  </script>
+</body>
+</html>
