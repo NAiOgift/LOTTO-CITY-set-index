@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LOTTO CITY - Real-time Stock Exchange & Live Data</title>
+  
+  <!-- PWA & Mobile Optimization Setup -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#070b14">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="LOTTO CITY">
+  <link rel="apple-touch-icon" href="logo.svg">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,12 +33,14 @@
   <div class="w-full max-w-md flex flex-col gap-4">
     
     <header class="flex items-center justify-between py-2 px-1">
-      <div>
-        <div class="flex items-center gap-2">
-          <div class="w-3 h-3 rounded-full bg-cyan-400"></div>
-          <h1 class="text-xl font-extrabold tracking-wider text-slate-100">LOTTO <span class="text-cyan-400">CITY</span></h1>
+      <div class="flex items-center gap-2.5">
+        <img src="logo.svg" alt="LOTTO CITY Logo" class="w-8 h-8 rounded-lg">
+        <div>
+          <div class="flex items-center gap-1.5">
+            <h1 class="text-xl font-extrabold tracking-wider text-slate-100">LOTTO <span class="text-cyan-400">CITY</span></h1>
+          </div>
+          <p class="text-[11px] text-slate-400 tracking-wide">Stock Exchange & Live Analytics</p>
         </div>
-        <p class="text-[11px] text-slate-400 tracking-wide mt-0.5">Stock Exchange & Live Analytics</p>
       </div>
       <div id="status-badge" class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
         <span id="status-dot" class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-fast"></span>
@@ -36,9 +48,8 @@
       </div>
     </header>
 
-    <!-- PAGE 1: ပင်မ မျက်နှာပြင် -->
+    <!-- PAGE 1 -->
     <div id="page-1" class="flex flex-col gap-4">
-      <!-- Main Live Result Card -->
       <div class="glass-card rounded-3xl p-6 shadow-2xl relative overflow-hidden">
         <div class="flex justify-between items-center text-xs text-slate-400 font-medium">
           <span>CURRENT RESULT</span>
@@ -61,14 +72,12 @@
         </div>
       </div>
 
-      <!-- နေ့စဉ် ထွက်ဂဏန်းများ Card -->
       <div class="glass-card rounded-3xl p-5 shadow-xl">
         <h2 class="text-sm font-bold text-slate-200 tracking-wide mb-3 flex items-center gap-2">
           <span class="text-cyan-400">⚡</span> နေ့စဉ် ထွက်ဂဏန်းများ
         </h2>
         
         <div class="grid grid-cols-2 gap-2.5">
-          <!-- 12:01 PM Card -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[120px]">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">12:01 PM (မနက်)</span>
             <span id="res-1201" class="text-3xl font-black text-cyan-400 my-1">--</span>
@@ -84,7 +93,6 @@
             </div>
           </div>
 
-          <!-- 04:30 PM Card -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[120px]">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">04:30 PM (ညနေ)</span>
             <span id="res-1630" class="text-3xl font-black text-cyan-400 my-1">--</span>
@@ -100,7 +108,6 @@
             </div>
           </div>
 
-          <!-- 09:30 AM Card -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">09:30 AM (မနက်)</span>
             <div class="flex flex-col justify-center gap-1.5 my-auto w-full max-w-[120px] mx-auto text-xs font-bold">
@@ -115,7 +122,6 @@
             </div>
           </div>
 
-          <!-- 02:00 PM Card -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">02:00 PM (ညနေ)</span>
             <div class="flex flex-col justify-center gap-1.5 my-auto w-full max-w-[120px] mx-auto text-xs font-bold">
@@ -130,13 +136,11 @@
             </div>
           </div>
 
-          <!-- 11:00 AM Card -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">11:00 AM (မနက်)</span>
             <span id="res-1100" class="text-2xl font-black text-cyan-400 my-auto">--</span>
           </div>
 
-          <!-- 03:00 PM Card -->
           <div class="bg-slate-900/80 border border-slate-800/60 p-3 rounded-2xl text-center flex flex-col justify-between min-h-[100px]">
             <span class="text-[10px] text-amber-400 font-bold block mb-1">03:00 PM (ညနေ)</span>
             <span id="res-1500" class="text-2xl font-black text-cyan-400 my-auto">--</span>
@@ -179,7 +183,7 @@
       </div>
     </div>
 
-    <!-- PAGE 2: ဒုတိယ မျက်နှာပြင် -->
+    <!-- PAGE 2 -->
     <div id="page-2" class="hidden flex-col gap-4">
       <div class="glass-card rounded-3xl p-5 shadow-xl border border-cyan-500/20">
         <div class="flex items-center justify-between mb-3 border-b border-slate-800/80 pb-3">
@@ -249,6 +253,13 @@
   </footer>
 
   <script>
+    // PWA Service Worker Registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW registration failed:', err));
+      });
+    }
+
     function switchTab(tabNum) {
       const page1 = document.getElementById('page-1');
       const page2 = document.getElementById('page-2');
@@ -270,15 +281,14 @@
     const myLottoData = {
       res1100: "--",
       res1500: "--",
-      m930_mod: "40",
-      m930_net: "33",
-      m200_mod: "86",
-      m200_net: "98",
+      m930_mod: "--",
+      m930_net: "--",
+      m200_mod: "--",
+      m200_net: "--",
       gift1: "34",
       gift2: "39",
       gift3: "54",
       gift4: "59",
-      // 👇 Adsterra Smartlink_2 Active Link
       adDirectUrl: "https://www.profitableratecpmnetwork.com/deizivffc1?key=f4e46c1513f35010ec09d0800d6a2d39", 
       weekDate: "31-08-2026 မှ 04-09-2026 ထိ",
       pat: "5",
@@ -352,7 +362,7 @@
             if (data && (data.live || data.result)) break;
           }
         } catch (e) {
-          // Continue to next proxy
+          // Continue
         }
       }
 
@@ -421,7 +431,6 @@
 
             if (openTime.includes("11:00") && twodVal !== "--" && ui.res1100) ui.res1100.innerText = twodVal;
             
-            // 12:01 PM
             if (openTime.includes("12:01")) {
               if (twodVal !== "--" && ui.res1201) ui.res1201.innerText = twodVal;
               if (item.set && ui.m1201Set) ui.m1201Set.innerText = item.set;
@@ -430,7 +439,6 @@
 
             if ((openTime.includes("15:00") || openTime.includes("3:00") || openTime.includes("03:00")) && twodVal !== "--" && ui.res1500) ui.res1500.innerText = twodVal;
             
-            // 04:30 PM
             if (openTime.includes("16:30") || openTime.includes("4:30") || openTime.includes("04:30")) {
               if (twodVal !== "--" && ui.res1630) ui.res1630.innerText = twodVal;
               if (item.set && ui.m1630Set) ui.m1630Set.innerText = item.set;
