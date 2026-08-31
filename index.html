@@ -242,16 +242,16 @@
     }
 
     const myLottoData = {
-      res1100: "40",
-      res1500: "33",
-      m930_mod: "--",
-      m930_net: "--",
+      res1100: "--",
+      res1500: "--",
+      m930_mod: "40",
+      m930_net: "33",
       m200_mod: "--",
       m200_net: "--",
-      gift1: "70",
-      gift2: "75",
-      gift3: "20",
-      gift4: "25",
+      gift1: "34",
+      gift2: "39",
+      gift3: "54",
+      gift4: "59",
       adDirectUrl: "https://www.google.com",
       weekDate: "24-08-2026 မှ 28-08-2026 ထိ",
       pat: "9",
@@ -298,36 +298,56 @@
       if (unlocked) unlocked.classList.remove('hidden');
     }
 
+    // Proxy Endpoints List (Fallback System)
+    const targetApi = "https://api.thaistock2d.com/live";
+    const proxyUrls = [
+      "https://api.allorigins.win/raw?url=" + encodeURIComponent(targetApi),
+      "https://corsproxy.io/?" + encodeURIComponent(targetApi),
+      targetApi
+    ];
+
     async function fetchStockData() {
-      const targetApi = "https://api.thaistock2d.com/live";
-      const proxyUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent(targetApi);
+      let data = null;
+
+      // တံခါးတစ်ခု ပိတ်ထားရင် နောက်တစ်ခုကနေ အလိုအလျောက် ခေါ်ယူမည်
+      for (let url of proxyUrls) {
+        try {
+          const res = await fetch(url);
+          if (res.ok) {
+            data = await res.json();
+            if (data) break; // Data ရတာနဲ့ Loop ကို ရပ်မည်
+          }
+        } catch (e) {
+          // တခြား Proxy အသုံးပြုရန် ဆက်သွားမည်
+        }
+      }
+
+      const ui = {
+        twod: document.getElementById("live-twod"),
+        set: document.getElementById("live-set"),
+        value: document.getElementById("live-value"),
+        time: document.getElementById("live-time"),
+        res1100: document.getElementById("res-1100"),
+        res1201: document.getElementById("res-1201"),
+        res1500: document.getElementById("res-1500"),
+        res1630: document.getElementById("res-1630"),
+        m930Mod: document.getElementById("m930-mod"),
+        m930Net: document.getElementById("m930-net"),
+        m200Mod: document.getElementById("m200-mod"),
+        m200Net: document.getElementById("m200-net"),
+        badge: document.getElementById("status-badge"),
+        dot: document.getElementById("status-dot"),
+        text: document.getElementById("status-text")
+      };
+
+      if (!data) {
+        if (ui.text) ui.text.innerText = "OFFLINE";
+        if (ui.dot) ui.dot.className = "w-1.5 h-1.5 rounded-full bg-rose-500";
+        return;
+      }
 
       try {
-        const res = await fetch(proxyUrl);
-        if (!res.ok) throw new Error('API Response Error');
-        
-        const data = await res.json();
-        if (!data) return;
-
-        const ui = {
-          twod: document.getElementById("live-twod"),
-          set: document.getElementById("live-set"),
-          value: document.getElementById("live-value"),
-          time: document.getElementById("live-time"),
-          res1100: document.getElementById("res-1100"),
-          res1201: document.getElementById("res-1201"),
-          res1500: document.getElementById("res-1500"),
-          res1630: document.getElementById("res-1630"),
-          m930Mod: document.getElementById("m930-mod"),
-          m930Net: document.getElementById("m930-net"),
-          m200Mod: document.getElementById("m200-mod"),
-          m200Net: document.getElementById("m200-net"),
-          badge: document.getElementById("status-badge"),
-          dot: document.getElementById("status-dot"),
-          text: document.getElementById("status-text")
-        };
-
-        // Current Live Data Parsing
+        // Live Data Update
         if (data.live) {
           const rawTime = String(data.live.time || "");
           const timeStr = rawTime.length >= 8 ? rawTime.substring(rawTime.length - 8) : rawTime;
@@ -354,7 +374,7 @@
           if (ui.time) ui.time.innerText = timeStr || "Syncing...";
         }
 
-        // Result Array Parsing
+        // Result Array Update
         if (Array.isArray(data.result)) {
           data.result.forEach(item => {
             if (!item) return;
@@ -367,27 +387,4 @@
             if ((openTime.includes("16:30") || openTime.includes("4:30") || openTime.includes("04:30")) && twodVal !== "--" && ui.res1630) ui.res1630.innerText = twodVal;
             
             if (openTime.includes("09:30") || openTime.includes("9:30")) {
-              if (item.modern && item.modern !== "--" && ui.m930Mod) ui.m930Mod.innerText = item.modern;
-              if (item.internet && item.internet !== "--" && ui.m930Net) ui.m930Net.innerText = item.internet;
-            }
-            if (openTime.includes("14:00") || openTime.includes("2:00") || openTime.includes("02:00")) {
-              if (item.modern && item.modern !== "--" && ui.m200Mod) ui.m200Mod.innerText = item.modern;
-              if (item.internet && item.internet !== "--" && ui.m200Net) ui.m200Net.innerText = item.internet;
-            }
-          });
-        }
-      } catch (err) {
-        console.error("API Fetch Error:", err);
-        const textElem = document.getElementById("status-text");
-        const dotElem = document.getElementById("status-dot");
-        if (textElem) textElem.innerText = "OFFLINE";
-        if (dotElem) dotElem.className = "w-1.5 h-1.5 rounded-full bg-rose-500";
-      }
-    }
 
-    renderLottoData();
-    fetchStockData();
-    setInterval(fetchStockData, 3000); 
-  </script>
-</body>
-</html>
