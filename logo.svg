@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#070b14"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bgGlow)"/>
+  <rect width="504" height="504" x="4" y="4" rx="108" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="8"/>
+  <g transform="translate(0, -10)">
+    <path d="M 100 310 L 190 270 L 260 300 L 412 180" fill="none" stroke="url(#cyanGrad)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0.3" />
+    <path d="M 130 140 H 195 V 325 H 340 V 375 H 130 Z" fill="url(#cyanGrad)" filter="url(#glow)"/>
+    <path d="M 382 150 L 260 272 L 210 222 L 310 120 H 250 V 80 H 382 Z" fill="url(#goldGrad)" />
+    <circle cx="382" cy="150" r="14" fill="#34d399" filter="url(#glow)"/>
+  </g>
+  <text x="256" y="445" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="40" fill="#f8fafc" letter-spacing="6" text-anchor="middle">
+    LOTTO <tspan fill="#38bdf8">CITY</tspan>
+  </text>
+</svg>
