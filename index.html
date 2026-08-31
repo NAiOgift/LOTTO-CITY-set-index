@@ -278,7 +278,8 @@
       gift2: "39",
       gift3: "54",
       gift4: "59",
-      adDirectUrl: "https://www.google.com", // မိမိ Adsterra / Direct Link ကို ဒီနေရာတွင် ထည့်ပါ
+      // 👇 Adsterra Smartlink_2 Active Link
+      adDirectUrl: "https://www.profitableratecpmnetwork.com/deizivffc1?key=f4e46c1513f35010ec09d0800d6a2d39", 
       weekDate: "31-08-2026 မှ 04-09-2026 ထိ",
       pat: "5",
       brake: "8 / 1",
@@ -309,7 +310,6 @@
       setSafeText("cfg-akway", myLottoData.akway);
     }
 
-    // ကြော်ငြာ Popup Blocker မမိစေရန် ပြင်ဆင်ထားသော Function
     function unlockGift() {
       const locked = document.getElementById('locked-content');
       const unlocked = document.getElementById('unlocked-content');
@@ -317,7 +317,7 @@
       if (locked) locked.classList.add('hidden');
       if (unlocked) unlocked.classList.remove('hidden');
 
-      if (myLottoData.adDirectUrl && myLottoData.adDirectUrl !== "#") {
+      if (myLottoData.adDirectUrl && myLottoData.adDirectUrl !== "" && myLottoData.adDirectUrl !== "#") {
         window.open(myLottoData.adDirectUrl, '_blank', 'noopener');
       }
     }
