@@ -32,7 +32,7 @@
       </div>
       <div id="status-badge" class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
         <span id="status-dot" class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-fast"></span>
-        <span id="status-text" class="text-[10px]">REAL-TIME (3S)</span>
+        <span id="status-text" class="text-[10px]">REAL-TIME (2S)</span>
       </div>
     </header>
 
@@ -299,26 +299,41 @@
     }
 
     const targetApi = "https://api.thaistock2d.com/live";
+    // ကြာမြင့်နေသော allorigins proxy ကို ဖယ်ထုတ်ပြီး မြန်ဆန်သော corsproxy.io ကို ထိပ်ဆုံး တင်ပေးထားပါသည်
     const proxyUrls = [
-      "https://api.allorigins.win/raw?url=" + encodeURIComponent(targetApi),
       "https://corsproxy.io/?" + encodeURIComponent(targetApi),
       targetApi
     ];
 
+    let isFetching = false;
+
     async function fetchStockData() {
+      if (isFetching) return;
+      isFetching = true;
+
       let data = null;
 
       for (let url of proxyUrls) {
         try {
-          const res = await fetch(url);
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 1500); // 1.5 စက္ကန့်အတွင်း မရလျှင် အလိုအလျောက် ပယ်ဖျက်မည်
+
+          const res = await fetch(url, { 
+            signal: controller.signal,
+            cache: 'no-store'
+          });
+          clearTimeout(timeoutId);
+
           if (res.ok) {
             data = await res.json();
-            if (data) break;
+            if (data && (data.live || data.result)) break;
           }
         } catch (e) {
-          // တခြား Proxy ကို ဆက်လက် ကြိုးစားမည်
+          // နောက် Proxy တစ်ခုဖြင့် ဆက်လက်ကြိုးစားမည်
         }
       }
+
+      isFetching = false;
 
       const ui = {
         twod: document.getElementById("live-twod"),
@@ -361,7 +376,7 @@
             } else {
               ui.badge.className = "flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold";
               ui.dot.className = "w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-fast";
-              ui.text.innerText = "REAL-TIME (3S)";
+              ui.text.innerText = "REAL-TIME (2S)";
             }
           }
 
@@ -397,11 +412,10 @@
       }
     }
 
-    // စာမျက်နှာ စဖွင့်သည်နှင့် သတ်မှတ်ထားသော Data များကို ရေးဆွဲရန်
     document.addEventListener("DOMContentLoaded", () => {
       renderLottoData();
       fetchStockData();
-      setInterval(fetchStockData, 3000); // ၃ စက္ကန့်လျှင် တစ်ကြိမ် API ခေါ်မည်
+      setInterval(fetchStockData, 2000); // ခေါ်ဆိုသည့် နှောင့်နှေးချိန်ကို ၂ စက္ကန့်သို့ လျှော့ချထားပါသည်
     });
   </script>
 </body>
