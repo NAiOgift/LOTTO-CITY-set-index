@@ -396,4 +396,67 @@
           const isEveningClosed = timeOnly >= "16:30:00" || (timeOnly < "09:30:00" && timeOnly.length > 0);
 
           if (ui.badge && ui.dot && ui.text) {
-            if (isMorningClosed || isEveningClos
+            if (isMorningClosed || isEveningClosed) {
+              ui.badge.className = "flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold";
+              ui.dot.className = "w-1.5 h-1.5 rounded-full bg-amber-400";
+              ui.text.innerText = isMorningClosed ? "MORNING CLOSED" : "MARKET CLOSED";
+            } else {
+              ui.badge.className = "flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold";
+              ui.dot.className = "w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-fast";
+              ui.text.innerText = "REAL-TIME (2S)";
+            }
+          }
+
+          if (ui.twod) ui.twod.innerText = data.live.twod ?? "--";
+          if (ui.set) ui.set.innerText = data.live.set ?? "--";
+          if (ui.value) ui.value.innerText = data.live.value ?? "--";
+          if (ui.time) ui.time.innerText = timeStr || "Syncing...";
+        }
+
+        if (Array.isArray(data.result)) {
+          data.result.forEach(item => {
+            if (!item) return;
+            const openTime = String(item.open_time || "").trim();
+            const twodVal = item.twod ?? "--";
+
+            if (openTime.includes("11:00") && twodVal !== "--" && ui.res1100) ui.res1100.innerText = twodVal;
+            
+            // 12:01 PM
+            if (openTime.includes("12:01")) {
+              if (twodVal !== "--" && ui.res1201) ui.res1201.innerText = twodVal;
+              if (item.set && ui.m1201Set) ui.m1201Set.innerText = item.set;
+              if (item.value && ui.m1201Val) ui.m1201Val.innerText = item.value;
+            }
+
+            if ((openTime.includes("15:00") || openTime.includes("3:00") || openTime.includes("03:00")) && twodVal !== "--" && ui.res1500) ui.res1500.innerText = twodVal;
+            
+            // 04:30 PM
+            if (openTime.includes("16:30") || openTime.includes("4:30") || openTime.includes("04:30")) {
+              if (twodVal !== "--" && ui.res1630) ui.res1630.innerText = twodVal;
+              if (item.set && ui.m1630Set) ui.m1630Set.innerText = item.set;
+              if (item.value && ui.m1630Val) ui.m1630Val.innerText = item.value;
+            }
+            
+            if (openTime.includes("09:30") || openTime.includes("9:30")) {
+              if (item.modern && ui.m930Mod) ui.m930Mod.innerText = item.modern;
+              if (item.internet && ui.m930Net) ui.m930Net.innerText = item.internet;
+            }
+            if (openTime.includes("14:00") || openTime.includes("2:00") || openTime.includes("02:00")) {
+              if (item.modern && ui.m200Mod) ui.m200Mod.innerText = item.modern;
+              if (item.internet && ui.m200Net) ui.m200Net.innerText = item.internet;
+            }
+          });
+        }
+      } catch (e) {
+        console.error("Data parse error:", e);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderLottoData();
+      fetchStockData();
+      setInterval(fetchStockData, 2000);
+    });
+  </script>
+</body>
+</html>
