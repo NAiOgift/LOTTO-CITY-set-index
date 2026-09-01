@@ -253,14 +253,12 @@
   </footer>
 
   <script>
-    // Service Worker Registration
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW registration failed:', err));
       });
     }
 
-    // Auto Pop-under Script for Adsterra (First Click)
     document.addEventListener("click", function() {
       if (myLottoData.adDirectUrl) {
         window.open(myLottoData.adDirectUrl, '_blank', 'noopener');
@@ -290,7 +288,7 @@
       res1500: "--",
       m930_mod: "04",
       m930_net: "11",
-      m200_mod: "39",
+      m200_mod: "69",
       m200_net: "69",
       gift1: "53",
       gift2: "58",
@@ -369,7 +367,7 @@
             if (data && (data.live || data.result)) break;
           }
         } catch (e) {
-          // Continue loop
+          // Continue fetching
         }
       }
 
@@ -380,10 +378,12 @@
         set: document.getElementById("live-set"),
         value: document.getElementById("live-value"),
         time: document.getElementById("live-time"),
+        res1100: document.getElementById("res-1100"),
         res1201: document.getElementById("res-1201"),
+        res1500: document.getElementById("res-1500"),
+        res1630: document.getElementById("res-1630"),
         m1201Set: document.getElementById("m1201-set"),
         m1201Val: document.getElementById("m1201-val"),
-        res1630: document.getElementById("res-1630"),
         m1630Set: document.getElementById("m1630-set"),
         m1630Val: document.getElementById("m1630-val"),
         dot: document.getElementById("status-dot"),
@@ -409,10 +409,14 @@
 
         if (data.result && Array.isArray(data.result)) {
           data.result.forEach(item => {
-            if (item.open_time === "12:01:00") {
+            if (item.open_time === "11:00:00" && item.twod) {
+              if (ui.res1100) ui.res1100.innerText = item.twod;
+            } else if (item.open_time === "12:01:00") {
               if (ui.res1201) ui.res1201.innerText = item.twod || "--";
               if (ui.m1201Set) ui.m1201Set.innerText = item.set || "--";
               if (ui.m1201Val) ui.m1201Val.innerText = item.value || "--";
+            } else if (item.open_time === "15:00:00" && item.twod) {
+              if (ui.res1500) ui.res1500.innerText = item.twod;
             } else if (item.open_time === "16:30:00") {
               if (ui.res1630) ui.res1630.innerText = item.twod || "--";
               if (ui.m1630Set) ui.m1630Set.innerText = item.set || "--";
